@@ -62,8 +62,6 @@ bot.on('message', message => {
 			if (command === 'tv') {
 				const mention = message.mentions.members.first();//() => message.react('👍')).then(() => message.react('👎')
 				message.channel.send("What did you think of " + mention + " and his/her Trail Status; should this status be kept?\n\n👍 yes\n\n👎 no").then(async msg => {await msg.react('👍'); await msg.react('👎');});
-              //Something
-             });
 			}
 			message.delete({timeout:1000});
 		}
