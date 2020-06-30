@@ -20,6 +20,9 @@ bot.on('message', message => {
 	if(message.channel.name == "verify") {
 		message.delete({timeout:1000});
 	}
+	else if(message.channel.name == "apply-for-rank") {
+		message.delete({timeout:1000});
+	}
 	else if(message.channel.name == "giveaways") {
 			if (command === 'gstart' && message.member.roles.find(r => r.name === "Giveaways") && !message.author.bot) {
 				message.delete({timeout:100000});
