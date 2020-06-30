@@ -4,9 +4,9 @@ const { prefix } = require('./config.json');
 const client = new Discord.Client();
 
 client.once('ready', ready => {
-	console.log('MineCraft bot responded and is operational!');
+	console.log('? bot responded and is operational!');
 	client.user.setStatus('online');
-	client.user.setActivity('First Place Splooshers bot');
+	client.user.setActivity('? bot');
 });
 
 client.on('message', message => {
