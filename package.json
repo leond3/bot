@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/leond3/bot#readme",
   "dependencies": {
-    "discord.js": "^12.2.0",
-    "fs": "0.0.1-security"
+    "discord.js": "^12.2.0"
   }
 }
