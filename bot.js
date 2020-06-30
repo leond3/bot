@@ -26,8 +26,7 @@ client.on('message', message => {
 	if(message.channel.name == "verify") {
 		message.delete(10000);
 	}
-	
-	if(message.channel.name == "giveaways") {
+	else if(message.channel.name == "giveaways") {
 		if (command === 'gstart' && message.member.roles.find(r => r.name === "Giveaways") && !message.author.bot) {
 			message.delete(100000);
 		}
@@ -38,7 +37,7 @@ client.on('message', message => {
 			message.delete(100000);
 		}
 	}
-	if(message.channel.name == "music") {
+	else if(message.channel.name == "music") {
 		if (message.content.startsWith(prefix) && !message.author.bot) {
 			message.delete(4000);
 		}
@@ -50,8 +49,7 @@ client.on('message', message => {
 			message.channel.send(":no_entry: **You can't chat in this channel, try: '!help'.**").then(msg => {msg.delete(4000)});
 		}
 	}
-	
-	if(message.channel.name == "commands") {
+	else if(message.channel.name == "commands") {
 		if (command === 'cf') {
 			var cf = Array(2);
 			cf[1] = "Heads";
@@ -65,6 +63,21 @@ client.on('message', message => {
 		else {
 			message.delete(10000);
 		}		
+	}
+	else if(message.channel.name == "trail-vote") {
+		if (command === 'tv') {
+			const mention = message.mentions.members.first();
+			if (mention.roles.find(r => r.name.toLowerCase() === "trail helper")) {
+				message.channel.send("What did you think of " + mention + " as a **Trail Helper**, and should this status be kept?\n👍 yes\n👎 no").then(() => message.react('👍')).then(() => message.react('👎'));
+			}
+			else if (mention.roles.find(r => r.name.toLowerCase() === "trail splasher")) {
+				message.channel.send("What did you think of " + mention + " as a **Trail Splasher**, and should this status be kept?\n👍 yes\n👎 no").then(() => message.react('👍')).then(() => message.react('👎'));
+			}
+			else if (mention.roles.find(r => r.name.toLowerCase() === "trail admin")) {
+				message.channel.send("What did you think of " + mention + " as a **Trail Administrator**, and should this status be kept?\n👍 yes\n👎 no").then(() => message.react('👍')).then(() => message.react('👎'));
+			}
+			message.delete(1000);
+		}	
 	}
 });
 
