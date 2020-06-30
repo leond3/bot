@@ -66,6 +66,10 @@ bot.on('message', message => {
 				const mention = message.mentions.members.first();
 				if (mention.roles.has(r => r.name.toLowerCase() === 'trail helper')) {
 					message.channel.send("What did you think of <@" + mention + "> and his/her **Trail Helper**; should this status be kept? Please vote by reacting to this message.").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				} else if (mention.roles.has(r => r.name.toLowerCase() === 'trail splasher')) {
+					message.channel.send("What did you think of <@" + mention + "> and his/her **Trail Splasher**; should this status be kept? Please vote by reacting to this message.").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				} else if (mention.roles.has(r => r.name.toLowerCase() === 'trail admin')) {
+					message.channel.send("What did you think of <@" + mention + "> and his/her **Trail Administrator**; should this status be kept? Please vote by reacting to this message.").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 				}
 			}
 			message.delete({timeout:1000});
