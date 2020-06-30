@@ -22,7 +22,7 @@ client.on('message', message => {
 	const command = args.shift().toLowerCase();
 	
 	if(message.channel.name == "verify") {
-		message.delete(10000);
+		message.delete(1000);
 	}
 	else if(message.channel.name == "giveaways") {
 		if (command === 'gstart' && message.member.roles.find(r => r.name === "Giveaways") && !message.author.bot) {
@@ -57,17 +57,14 @@ client.on('message', message => {
 			if (coinflip === 1) { message.channel.send(cf[1]).then(msg => {msg.delete(100000)}); }
 			if (coinflip === 2) { message.channel.send(cf[2]).then(msg => {msg.delete(100000)}); }
 			message.delete(10000);
-		}
-		else {
-			message.delete(10000);
 		}		
 	}
 	else if(message.channel.name == "trail-vote") {
 		if (command === 'tv') {
 			const mention = message.mentions.members.first();
 			message.channel.send("What did you think of " + mention + " and his/her **Trail Status**, and should this status be kept?\n👍 yes\n👎 no").then(() => message.react('👍')).then(() => message.react('👎'));
-			message.delete(1000);
-		}	
+		}
+		message.delete(1000);
 	}
 });
 
