@@ -1,10 +1,11 @@
+require('dotenv').config();
 const Discord = require('discord.js');
-const { prefix } = require('./config.json');
-
 const client = new Discord.Client();
 
-client.once('ready', ready => {
-	console.log('? bot responded and is operational!');
+const { prefix } = require('./config.json');
+
+client.on('ready', ready => {
+	console.info('? bot responded and is operational!');
 	client.user.setStatus('online');
 	client.user.setActivity('? bot');
 });
