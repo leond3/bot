@@ -44,16 +44,19 @@ bot.on('message', message => {
 			}
 		}
 		else if(message.channel.name == "commands") {
-			if (command === 'cf') {
+			if (command === '!help') {
+				 message.channel.send("**Commands help list:**\n- !help\n- !hg!link [in-game username]\n- !coinflip (cf)").then(msg => {msg.delete({timeout:10000})});
+			}
+			else if (command === 'coinflip' || command === 'cf') {
 				var cf = Array(2);
 				cf[1] = "Heads";
 				cf[2] = "Tails";
 				
 				var coinflip = getRandomInt(1, 3);
-				if (coinflip === 1) { message.channel.send(cf[1]).then(msg => {msg.delete({timeout:100000})}); }
-				if (coinflip === 2) { message.channel.send(cf[2]).then(msg => {msg.delete({timeout:100000})}); }
-				message.delete({timeout:1000});
-			}		
+				if (coinflip === 1) { message.channel.send(cf[1]).then(msg => {msg.delete({timeout:10000})}); }
+				if (coinflip === 2) { message.channel.send(cf[2]).then(msg => {msg.delete({timeout:10000})}); }
+			}
+			message.delete({timeout:1000});
 		}
 		else if(message.channel.name == "trail-vote") {
 			if (command === 'tv') {
