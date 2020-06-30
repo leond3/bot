@@ -15,7 +15,7 @@ bot.on('message', message => {
 
 	if (command === 'ping') {
 		message.channel.send('Pong.');
-		message.delete(1000);
+		message.delete({timeout:1000});
 	}
 });
 
