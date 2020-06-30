@@ -1,7 +1,4 @@
 const Discord = require('discord.js');
-const { prefix } = require('./config.json');
-
-const fs = require("fs");
 
 const client = new Discord.Client();
 
@@ -12,6 +9,7 @@ client.once('ready', ready => {
 });
 
 client.on('message', message => {
+	const prefix = '!';
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 	
