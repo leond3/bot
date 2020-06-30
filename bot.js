@@ -15,8 +15,7 @@ bot.on('message', message => {
 
 	if (command === 'ping') {
 		message.channel.send('Pong.');
-	} else if (command === 'beep') {
-		message.channel.send('Boop.');
+		message.delete(1000);
 	}
 });
 
