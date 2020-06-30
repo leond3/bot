@@ -1,14 +1,13 @@
 const Discord = require('discord.js');
+const bot = new Discord.Client();
 
-const client = new Discord.Client();
-
-client.once('ready', ready => {
+bot.once('ready', ready => {
 	console.log('? bot responded and is operational!');
 	client.user.setStatus('online');
 	client.user.setActivity('? bot');
 });
 
-client.on('message', message => {
+bot.on('message', message => {
 	const prefix = '!';
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
@@ -18,4 +17,4 @@ client.on('message', message => {
 	}
 });
 
-client.login(process.env.token);
+bot.login(process.env.token);
