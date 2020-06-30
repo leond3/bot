@@ -54,7 +54,15 @@ bot.on('message', message => {
 		else if(message.channel.name == "trail-vote") {
 			if (command === 'tv') {
 				const mention = message.mentions.members.first();
-				message.channel.send("What did you think of " + mention + " and his/her **Trail Status**, and should this status be kept?\nðŸ‘ yes\nðŸ‘Ž no").then(() => message.react('ðŸ‘')).then(() => message.react('ðŸ‘Ž'));
+				if (mention.roles.find(r => r.name.toLowerCase() === "trail helper")) {
+					message.channel.send("What did you think of " + mention + " and his/her status as **Trail Helper**, and should this status be kept?\n👍 yes\n👎 no").then(() => message.react('👍')).then(() => message.react('👎'));
+				}
+				else if (mention.roles.find(r => r.name.toLowerCase() === "trail splasher")) {
+					message.channel.send("What did you think of " + mention + " and his/her status as **Trail Splasher**, and should this status be kept?\n👍 yes\n👎 no").then(() => message.react('👍')).then(() => message.react('👎'));
+				}
+				else if (mention.roles.find(r => r.name.toLowerCase() === "trail admin")) {
+					message.channel.send("What did you think of " + mention + " and his/her status as **Trail Administrator**, and should this status be kept?\n👍 yes\n👎 no").then(() => message.react('👍')).then(() => message.react('👎'));
+				}
 			}
 			message.delete({timeout:1000});
 		}
