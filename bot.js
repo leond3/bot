@@ -61,7 +61,7 @@ bot.on('message', message => {
 		else if(message.channel.name == "trail-vote") {
 			if (command === 'tv') {
 				const mention = message.mentions.members.first();
-				message.channel.send("What did you think of <@" + mention + "> and his/her **Trail Status**; should this status be kept?\n \:thumbsup:  yes\n \:thumbsdown:  no").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				message.channel.send("What did you think of <@" + mention + "> and his/her **Trail Status**; should this status be kept? Please vote by reacting to this message.").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 			}
 			message.delete({timeout:1000});
 		}
