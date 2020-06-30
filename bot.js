@@ -10,13 +10,7 @@ client.on('ready', ready => {
 });
 
 client.on('message', message => {
-	const args = message.content.slice(prefix.length).split(/ +/);
-	const command = args.shift().toLowerCase();
-	
-	if(message.channel.name == "verify") {
-		message.delete(1000);
-	}
-	
+
 });
 
 client.login(process.env.token);
