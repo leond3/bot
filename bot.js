@@ -4,11 +4,15 @@ const { prefix } = require('./config.json');
 const bot = new Discord.Client();
 
 bot.once('ready', () => {
-	console.log('Ready!');
+	console.log('? bot responded and is operational!');
+	client.user.setStatus('online');
+	client.user.setActivity('? bot');
 });
 
 bot.on('message', message => {
-	if (message.author.bot) return;
+	if (message.author.bot) {
+		return;
+	}
 
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
