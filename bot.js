@@ -1,19 +1,22 @@
 const Discord = require('discord.js');
+const { prefix } = require('./config.json');
+
 const bot = new Discord.Client();
 
-bot.once('ready', ready => {
-	console.log('? bot responded and is operational!');
-	client.user.setStatus('online');
-	client.user.setActivity('? bot');
+bot.once('ready', () => {
+	console.log('Ready!');
 });
 
 bot.on('message', message => {
-	const prefix = '!';
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
-	
-	if(message.channel.name == "verify") {
-		message.delete(1000);
+
+	if (command === 'ping') {
+		message.channel.send('Pong.');
+	} else if (command === 'beep') {
+		message.channel.send('Boop.');
 	}
 });
 
