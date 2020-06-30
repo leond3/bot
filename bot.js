@@ -65,13 +65,13 @@ client.on('message', message => {
 	else if(message.channel.name == "trail-vote") {
 		if (command === 'tv') {
 			const mention = message.mentions.members.first();
-			if (mention.roles.find('727180920830034050')) {
+			if (mention.roles.find(r => r.name === "TRAIL Helper")) {
 				message.channel.send("What did you think of " + mention + " as a **Trail Helper**, and should this status be kept?\n👍 yes\n👎 no").then(() => message.react('👍')).then(() => message.react('👎'));
 			}
-			else if (mention.roles.find('727180786541002812')) {
+			else if (mention.roles.find(r => r.name === "TRAIL Splasher")) {
 				message.channel.send("What did you think of " + mention + " as a **Trail Splasher**, and should this status be kept?\n👍 yes\n👎 no").then(() => message.react('👍')).then(() => message.react('👎'));
 			}
-			else if (mention.roles.find('727180504402624532')) {
+			else if (mention.roles.find(r => r.name === "TRAIL Admin")) {
 				message.channel.send("What did you think of " + mention + " as a **Trail Administrator**, and should this status be kept?\n👍 yes\n👎 no").then(() => message.react('👍')).then(() => message.react('👎'));
 			}
 			message.delete(1000);
