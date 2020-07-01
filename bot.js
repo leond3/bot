@@ -41,7 +41,7 @@ bot.on('message', message => {
 	}
 	else if(message.channel.name == "commands") {
 		if (command === 'help') {
-			 message.channel.send("**Commands help list:**\n- !help\n- !hg!link [in-game username]\n- !coinflip (cf)\n - v!help").then(msg => {msg.delete({timeout:10000})});
+			 message.channel.send("**Commands help list:**\n- !help\n- !hg!link [in-game username]\n- !coinflip (cf)\n - v!help\n - !role [role/list]").then(msg => {msg.delete({timeout:30000})});
 		}
 		else if (command === 'coinflip' || command === 'cf') {
 			var cf = Array(2);
@@ -51,6 +51,35 @@ bot.on('message', message => {
 			var coinflip = getRandomInt(1, 3);
 			if (coinflip === 1) { message.channel.send("It's **" + cf[1] + "**!").then(msg => {msg.delete({timeout:10000})}); }
 			if (coinflip === 2) { message.channel.send("It's **" + cf[2] + "**!").then(msg => {msg.delete({timeout:10000})}); }
+		}
+		else if (command === 'role') {
+			if (!args[0]) {
+				message.channel.send("**:no_entry: You didn't specify an argument, try **`!role list`**.").then(msg => {msg.delete({timeout:4000})});
+			}
+			else if (args[0].toLowerCase() === 'list') {
+				message.channel.send("**Commands help list:**\n- Splash\n- Update").then(msg => {msg.delete({timeout:10000})});
+			}
+			else if (args[0].toLowerCase() === 'splash') {
+				if (message.roles.cache.some(r => r.name.toLowerCase() === 'splash')) {
+					message.member.removeRole(message.guild.roles.find(r => r.name.toLowerCase() == 'splash'));
+				}
+				else {
+					message.member.addRole(message.guild.roles.find(r => r.name.toLowerCase() == 'splash'));
+				}
+				message.channel.send("**:white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
+			}
+			else if (args[0].toLowerCase() === 'update') {
+				if (message.roles.cache.some(r => r.name.toLowerCase() === 'update')) {
+					message.member.removeRole(message.guild.roles.find(r => r.name.toLowerCase() == 'update'));
+				}
+				else {
+					message.member.addRole(message.guild.roles.find(r => r.name.toLowerCase() == 'update'));
+				}
+				message.channel.send("**:white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
+			}
+			else {
+				message.channel.send("**:no_entry: Couldn't find this argument, try **`!role list`**.").then(msg => {msg.delete({timeout:4000})});
+			}
 		}
 		message.delete({timeout:10000});
 	}
