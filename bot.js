@@ -60,7 +60,7 @@ bot.on('message', message => {
 				message.channel.send("**Commands help list:**\n- Splash\n- Update").then(msg => {msg.delete({timeout:10000})});
 			}
 			else if (args[0].toLowerCase() === 'splash') {
-				if (message.member.roles.find(r => r.name.toLowerCase() === 'splash')) {
+				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'splash')) {
 					message.member.removeRole(message.guild.roles.find(r => r.name.toLowerCase() == 'splash'));
 				}
 				else {
@@ -69,7 +69,7 @@ bot.on('message', message => {
 				message.channel.send(":white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
 			}
 			else if (args[0].toLowerCase() === 'update') {
-				if (message.member.roles.find(r => r.name.toLowerCase() === 'update')) {
+				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'update')) {
 					message.member.removeRole(message.guild.roles.find(r => r.name.toLowerCase() == 'update'));
 				}
 				else {
