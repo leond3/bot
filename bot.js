@@ -54,7 +54,7 @@ bot.on('message', message => {
 		}
 		else if (command === 'role') {
 			if (!args[0]) {
-				message.channel.send("**:no_entry: You didn't specify an argument, try **`!role list`**.").then(msg => {msg.delete({timeout:4000})});
+				message.channel.send(":no_entry: You didn't specify an argument, try **`!role list`**.").then(msg => {msg.delete({timeout:4000})});
 			}
 			else if (args[0].toLowerCase() === 'list') {
 				message.channel.send("**Commands help list:**\n- Splash\n- Update").then(msg => {msg.delete({timeout:10000})});
@@ -66,7 +66,7 @@ bot.on('message', message => {
 				else {
 					message.member.addRole(message.guild.roles.find(r => r.name.toLowerCase() == 'splash'));
 				}
-				message.channel.send("**:white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
+				message.channel.send(":white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
 			}
 			else if (args[0].toLowerCase() === 'update') {
 				if (message.roles.cache.some(r => r.name.toLowerCase() === 'update')) {
@@ -75,10 +75,10 @@ bot.on('message', message => {
 				else {
 					message.member.addRole(message.guild.roles.find(r => r.name.toLowerCase() == 'update'));
 				}
-				message.channel.send("**:white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
+				message.channel.send(":white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
 			}
 			else {
-				message.channel.send("**:no_entry: Couldn't find this argument, try **`!role list`**.").then(msg => {msg.delete({timeout:4000})});
+				message.channel.send(":no_entry: Couldn't find this argument, try **`!role list`**.").then(msg => {msg.delete({timeout:4000})});
 			}
 		}
 		message.delete({timeout:10000});
