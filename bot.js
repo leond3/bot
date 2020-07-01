@@ -61,19 +61,19 @@ bot.on('message', message => {
 			}
 			else if (args[0].toLowerCase() === 'splash') {
 				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'splash')) {
-					message.member.roles.remove(r => r.name.toLowerCase() == 'splash');
+					message.member.roles.remove('727099300743479356');
 				}
 				else {
-					message.member.roles.add(r => r.name.toLowerCase() == 'splash');
+					message.member.roles.add('727099300743479356');
 				}
 				message.channel.send(":white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
 			}
 			else if (args[0].toLowerCase() === 'update') {
 				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'update')) {
-					message.member.roles.remove(r => r.name.toLowerCase() == 'update');
+					message.member.roles.remove('727903675917533284');
 				}
 				else {
-					message.member.roles.add(r => r.name.toLowerCase() == 'update');
+					message.member.roles.add('727903675917533284');
 				}
 				message.channel.send(":white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
 			}
