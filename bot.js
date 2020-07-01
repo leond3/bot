@@ -17,13 +17,13 @@ bot.on('message', message => {
 		message.delete({timeout:1000});
 	}
 	else if(message.channel.name == "giveaways") {
-		if (command === 'gstart' && message.member.roles.find(r => r.name === "Giveaways") && !message.author.bot) {
+		if (command === 'gstart' && message.member.roles.cache.some(r => r.name.toLowerCase() === 'giveaways') && !message.author.bot) {
 			message.delete({timeout:100000});
 			}
-		else if (command === 'gstart' && !message.member.roles.find(r => r.name === "Giveaways") && !message.author.bot) {
+		else if (command === 'gstart' && !message.member.roles.cache.some(r => r.name.toLowerCase() === 'giveaways') && !message.author.bot) {
 			message.delete({timeout:100000});
 			}
-		else if (!message.member.roles.find(r => r.name === "Giveaway") && !message.author.bot) {
+		else if (!message.member.roles.cache.some(r => r.name.toLowerCase() === 'giveaways') && !message.author.bot) {
 			message.delete({timeout:100000});
 		}
 	}
@@ -61,19 +61,19 @@ bot.on('message', message => {
 			}
 			else if (args[0].toLowerCase() === 'splash') {
 				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'splash')) {
-					message.member.removeRole(message.guild.roles.cache.some(r => r.name.toLowerCase() == 'splash'));
+					message.roles.remove(message.guild.roles.cache.some(r => r.name.toLowerCase() == 'splash'));
 				}
 				else {
-					message.member.addRole(message.guild.roles.cache.some(r => r.name.toLowerCase() == 'splash'));
+					message.roles.add(message.guild.roles.cache.some(r => r.name.toLowerCase() == 'splash'));
 				}
 				message.channel.send(":white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
 			}
 			else if (args[0].toLowerCase() === 'update') {
 				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'update')) {
-					message.member.removeRole(message.guild.roles.cache.some(r => r.name.toLowerCase() == 'update'));
+					message.roles.remove(message.guild.roles.cache.some(r => r.name.toLowerCase() == 'update'));
 				}
 				else {
-					message.member.addRole(message.guild.roles.cache.some(r => r.name.toLowerCase() == 'update'));
+					message.roles.add(message.guild.roles.cache.some(r => r.name.toLowerCase() == 'update'));
 				}
 				message.channel.send(":white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
 			}
