@@ -33,10 +33,10 @@ bot.on('message', message => {
 	}
 	else if(message.channel.name == "music") {
 		if (message.content.startsWith(prefix) && !message.author.bot) {
-			message.delete({timeout:100000});
+			message.delete({timeout:10000});
 		}
-		else if (message.member.roles.find(r => r.name.toLowerCase() === "music")) {
-			message.delete({timeout:1000});
+		else if (message.roles.cache.some(r => r.name.toLowerCase() === "music")) {
+			message.delete({timeout:30000});
 		}
 		else if (!message.content.startsWith(prefix) && !message.author.bot) {
 			message.delete({timeout:1000});
@@ -56,16 +56,18 @@ bot.on('message', message => {
 			if (coinflip === 1) { message.channel.send("It's **" + cf[1] + "**!").then(msg => {msg.delete({timeout:10000})}); }
 			if (coinflip === 2) { message.channel.send("It's **" + cf[2] + "**!").then(msg => {msg.delete({timeout:10000})}); }
 		}
-		else if(message.channel.name == "trail-vote") {
-			if (command === 'tv') {
-				const mention = message.mentions.members.first();
-				if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail helper')) {
-					message.channel.send("What did you think of <@" + mention + "> as a **Trail Helper**; should this status be kept? Please vote by reacting to this message.").then(async msg => {await msg.react('👍'); await msg.react('👎');});
-				} else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
-					message.channel.send("What did you think of <@" + mention + "> as a **Trail Splasher**; should this status be kept? Please vote by reacting to this message.").then(async msg => {await msg.react('👍'); await msg.react('👎');});
-				} else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
-					message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.").then(async msg => {await msg.react('👍'); await msg.react('👎');});
-				}
+	}
+	else if(message.channel.name == "trail-vote") {
+		if (command === 'tv') {
+			const mention = message.mentions.members.first();
+			if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail helper')) {
+				message.channel.send("What did you think of <@" + mention + "> as a **Trail Helper**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+			}
+			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
+				message.channel.send("What did you think of <@" + mention + "> as a **Trail Splasher**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+			}
+			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
+				message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 			}
 			message.delete({timeout:1000});
 		}
