@@ -35,7 +35,7 @@ bot.on('message', message => {
 		if (message.content.startsWith(prefix) && !message.author.bot) {
 			message.delete({timeout:10000});
 		}
-		else if (message.roles.cache.some(r => r.name.toLowerCase() === "music")) {
+		else if (message.roles.cache.some(r => r.name.toLowerCase() === 'music')) {
 			message.delete({timeout:30000});
 		}
 		else if (!message.content.startsWith(prefix) && !message.author.bot) {
@@ -61,13 +61,13 @@ bot.on('message', message => {
 		if (command === 'tv') {
 			const mention = message.mentions.members.first();
 			if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail helper')) {
-				message.channel.send("<@726931313780719669>\nWhat did you think of <@" + mention + "> as a **Trail Helper**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				message.channel.send(message.channel.server.roles.get(r => r.name.toLowerCase() === 'guild member').mention + "\nWhat did you think of <@" + mention + "> as a **Trail Helper**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
-				message.channel.send("<@726931313780719669>\nWhat did you think of <@" + mention + "> as a **Trail Splasher**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				message.channel.send(message.channel.server.roles.get(r => r.name.toLowerCase() === 'guild member').mention + "\nWhat did you think of <@" + mention + "> as a **Trail Splasher**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
-				message.channel.send("<@726931313780719669>\nWhat did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				message.channel.send(message.channel.server.roles.get(r => r.name.toLowerCase() === 'guild member').mention + "\nWhat did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 			}
 			message.delete({timeout:1000});
 		}
