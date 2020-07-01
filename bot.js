@@ -61,19 +61,19 @@ bot.on('message', message => {
 			}
 			else if (args[0].toLowerCase() === 'splash') {
 				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'splash')) {
-					message.member.roles.remove(r => r.name.toLowerCase() == 'splash'));
+					message.member.roles.remove(r => r.name.toLowerCase() == 'splash');
 				}
 				else {
-					message.member.roles.add(r => r.name.toLowerCase() == 'splash'));
+					message.member.roles.add(r => r.name.toLowerCase() == 'splash');
 				}
 				message.channel.send(":white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
 			}
 			else if (args[0].toLowerCase() === 'update') {
 				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'update')) {
-					message.member.roles.remove(r => r.name.toLowerCase() == 'update'));
+					message.member.roles.remove(r => r.name.toLowerCase() == 'update');
 				}
 				else {
-					message.member.roles.add(r => r.name.toLowerCase() == 'update'));
+					message.member.roles.add(r => r.name.toLowerCase() == 'update');
 				}
 				message.channel.send(":white_check_mark: Successfully updated your roles.").then(msg => {msg.delete({timeout:4000})});
 			}
