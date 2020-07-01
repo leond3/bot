@@ -41,7 +41,7 @@ bot.on('message', message => {
 	}
 	else if(message.channel.name == "commands") {
 		if (command === 'help') {
-			 message.channel.send("**Commands help list:**\n- !help\n- !hg!link [in-game username]\n- !coinflip (cf)").then(msg => {msg.delete({timeout:10000})});
+			 message.channel.send("**Commands help list:**\n- !help\n- !hg!link [in-game username]\n- !coinflip (cf)\n - v!help").then(msg => {msg.delete({timeout:10000})});
 		}
 		else if (command === 'coinflip' || command === 'cf') {
 			var cf = Array(2);
@@ -52,6 +52,7 @@ bot.on('message', message => {
 			if (coinflip === 1) { message.channel.send("It's **" + cf[1] + "**!").then(msg => {msg.delete({timeout:10000})}); }
 			if (coinflip === 2) { message.channel.send("It's **" + cf[2] + "**!").then(msg => {msg.delete({timeout:10000})}); }
 		}
+		message.delete({timeout:10000});
 	}
 	else if(message.channel.name == "trail-vote") {
 		if (command === 'tv') {
