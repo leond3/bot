@@ -86,13 +86,13 @@ bot.on('message', message => {
 	else if(message.channel.name == "trail-vote") {
 		if (command === 'tv') {
 			const mention = message.mentions.members.first();
-			if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail helper')) {
+			if (mention.roles.has(r => r.name.toLowerCase() === 'trail helper')) {
 				message.channel.send("What did you think of <@" + mention + "> as a **Trail Helper**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 			}
-			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
+			else if (mention.roles.has(r => r.name.toLowerCase() === 'trail splasher')) {
 				message.channel.send("What did you think of <@" + mention + "> as a **Trail Splasher**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 			}
-			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
+			else if (mention.roles.has(r => r.name.toLowerCase() === 'trail admin')) {
 				message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 			}
 			message.delete({timeout:1000});
