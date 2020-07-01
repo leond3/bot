@@ -41,7 +41,7 @@ bot.on('message', message => {
 	}
 	else if(message.channel.name == "commands") {
 		if (command === 'help') {
-			 message.channel.send("**Commands help list:**\n- !help\n- !hg!link [in-game username]\n- !coinflip (cf)\n - v!help\n - !role [role/list]").then(msg => {msg.delete({timeout:30000})});
+			 message.channel.send("**Commands help list:**\n- !help\n- !hg!link [in-game username]\n- !coinflip (cf)\n- v!help\n- !role [role/list]").then(msg => {msg.delete({timeout:30000})});
 		}
 		else if (command === 'coinflip' || command === 'cf') {
 			var cf = Array(2);
