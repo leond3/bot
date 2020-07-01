@@ -53,8 +53,8 @@ bot.on('message', message => {
 			cf[2] = "Tails";
 			
 			var coinflip = getRandomInt(1, 3);
-			if (coinflip === 1) { message.channel.send(cf[1]).then(msg => {msg.delete({timeout:10000})}); }
-			if (coinflip === 2) { message.channel.send(cf[2]).then(msg => {msg.delete({timeout:10000})}); }
+			if (coinflip === 1) { message.channel.send("It's **" + cf[1] + "**!").then(msg => {msg.delete({timeout:10000})}); }
+			if (coinflip === 2) { message.channel.send("It's **" + cf[2] + "**!").then(msg => {msg.delete({timeout:10000})}); }
 		}
 		else if(message.channel.name == "trail-vote") {
 			if (command === 'tv') {
