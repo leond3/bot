@@ -118,18 +118,18 @@ bot.on('message', message => {
 			const mention = message.mentions.members.first();
 			if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail helper')) {
 				message.channel.send("Congratulations <@" + mention + ">, you've been accepted as **Helper**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured.*");
-				mention.member.roles.remove('727180920830034050');
-				mention.member.roles.add('726942583024254986');
+				mention.roles.remove('727180920830034050');
+				mention.roles.add('726942583024254986');
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
 				message.channel.send("Congratulations <@" + mention + ">, you've been accepted as **Splasher**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured.*");
-				mention.member.roles.remove('727180786541002812');
-				mention.member.roles.add('726931348698300557');
+				mention.roles.remove('727180786541002812');
+				mention.roles.add('726931348698300557');
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
 				message.channel.send("Congratulations <@" + mention + ">, you've been accepted as **Admin**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured.*");
-				mention.member.roles.remove('727180504402624532');
-				mention.member.roles.add('726926448044015656');
+				mention.roles.remove('727180504402624532');
+				mention.roles.add('726926448044015656');
 			}
 			message.delete({timeout:1000});
 		}
