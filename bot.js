@@ -31,37 +31,9 @@ bot.on('message', message => {
 	if(message.channel.name == "verify" || message.channel.name == "apply-for-rank") {
 		message.delete({timeout:1000});
 	}
-	else if(message.channel.name == "giveaways") {
-		if (command === 'gstart' && message.member.roles.cache.some(r => r.name.toLowerCase() === 'giveaways') && !message.author.bot) {
-			message.delete({timeout:100000});
-			}
-		else if (command === 'gstart' && !message.member.roles.cache.some(r => r.name.toLowerCase() === 'giveaways') && !message.author.bot) {
-			message.delete({timeout:100000});
-			}
-		else if (!message.member.roles.cache.some(r => r.name.toLowerCase() === 'giveaways') && !message.author.bot) {
-			message.delete({timeout:100000});
-		}
-	}
-	else if(message.channel.name == "music") {
-		if (message.content.startsWith(prefix) && !message.author.bot) {
-			message.delete({timeout:10000});
-		}
-		else if (message.roles.cache.some(r => r.name.toLowerCase() === 'music')) {
-			message.delete({timeout:30000});
-		}
-		else if (!message.content.startsWith(prefix) && !message.author.bot) {
-			message.delete({timeout:1000});
-			message.channel.send(":no_entry: **You can't chat in this channel, try: '!help'.**").then(msg => {msg.delete(4000)});
-		}
-	}
-	else if(message.channel.name == "staff-chat") {
-		if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mee6')) {
-			message.delete({timeout:10000});
-		}
-	}
 	else if(message.channel.name == "commands") {
 		if (command === 'help') {
-			 message.channel.send("**Commands help list:**\n- !help\n- !coinflip (!cf)\n- !role [role/list]").then(msg => {msg.delete({timeout:30000})});
+			 message.channel.send("**Commands help list:**\n- !help\n- !coinflip (!cf)\n- !role [role/list]\n- !mypermissions (!myperms)").then(msg => {msg.delete({timeout:30000})});
 		}
 		else if (command === 'coinflip' || command === 'cf') {
 			var cf = Array(2);
@@ -103,7 +75,49 @@ bot.on('message', message => {
 				message.channel.send(":no_entry: Couldn't find this argument, try **`!role list`**.").then(msg => {msg.delete({timeout:4000})});
 			}
 		}
+		else if (command === 'mypermissions' || command === 'myperms') {
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'admin')) {
+				message.channel.send("**Your (discord) permissions list:**\n - !ban [user] [reason]\n - !unban [user]\n - !kick [user] [reason]\n - !mute [user] [reason]\n - !unmute [user]").then(msg => {msg.delete({timeout:10000})});
+			}
+			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
+				message.channel.send("**Your (discord) permissions list:**\n - !mute [user] [reason]\n - !unmute [user]").then(msg => {msg.delete({timeout:10000})});
+			}
+			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'helper')) {
+				message.channel.send("**Your (discord) permissions list:**\n - !mute [user] [reason]\n - !unmute [user]").then(msg => {msg.delete({timeout:10000})});
+			}
+			else {
+				message.channel.send("**:no_entry: Your rank doesn't give any discord permissions.**").then(msg => {msg.delete({timeout:10000})});
+			}
+		}
 		message.delete({timeout:10000});
+	}
+	else if(message.channel.name == "giveaways") {
+		if (command === 'gstart' && message.member.roles.cache.some(r => r.name.toLowerCase() === 'giveaways') && !message.author.bot) {
+			message.delete({timeout:100000});
+			}
+		else if (command === 'gstart' && !message.member.roles.cache.some(r => r.name.toLowerCase() === 'giveaways') && !message.author.bot) {
+			message.delete({timeout:100000});
+			}
+		else if (!message.member.roles.cache.some(r => r.name.toLowerCase() === 'giveaways') && !message.author.bot) {
+			message.delete({timeout:100000});
+		}
+	}
+	else if(message.channel.name == "music") {
+		if (message.content.startsWith(prefix) && !message.author.bot) {
+			message.delete({timeout:10000});
+		}
+		else if (message.roles.cache.some(r => r.name.toLowerCase() === 'music')) {
+			message.delete({timeout:30000});
+		}
+		else if (!message.content.startsWith(prefix) && !message.author.bot) {
+			message.delete({timeout:1000});
+			message.channel.send(":no_entry: **You can't chat in this channel, try: '!help'.**").then(msg => {msg.delete(4000)});
+		}
+	}
+	else if(message.channel.name == "staff-chat") {
+		if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mee6')) {
+			message.delete({timeout:10000});
+		}
 	}
 	else if(message.channel.name == "trail-vote") {
 		if (command === 'tv') {
