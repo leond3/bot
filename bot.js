@@ -90,7 +90,7 @@ bot.on('message', message => {
 					message.channel.send(":white_check_mark: Successfully remove role.").then(msg => {msg.delete({timeout:10000})});
 				}
 				else {
-					message.member.roles.add('727903675917533284');
+					message.member.roles.add(r => r.name.toLowerCase() === 'update');
 					message.channel.send(":white_check_mark: Successfully added role.").then(msg => {msg.delete({timeout:10000})});
 				}
 			}
@@ -102,6 +102,19 @@ bot.on('message', message => {
 	}
 	else if(message.channel.name == "trail-vote") {
 		if (command === 'tv') {
+			const mention = message.mentions.members.first();
+			if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail helper')) {
+				message.channel.send("What did you think of <@" + mention + "> as a **Trail Helper**; should this status be kept? Please vote by reacting to this message.\nHelper's need at least **5** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+			}
+			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
+				message.channel.send("What did you think of <@" + mention + "> as a **Trail Splasher**; should this status be kept? Please vote by reacting to this message.\nSplasher's need at least **4** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+			}
+			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
+				message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\Admin's need at least **6** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+			}
+			message.delete({timeout:1000});
+		}
+		else if (command === 'promote') {
 			const mention = message.mentions.members.first();
 			if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail helper')) {
 				message.channel.send("What did you think of <@" + mention + "> as a **Trail Helper**; should this status be kept? Please vote by reacting to this message.\nHelper's need at least **5** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
