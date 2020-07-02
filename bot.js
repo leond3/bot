@@ -54,6 +54,11 @@ bot.on('message', message => {
 			message.channel.send(":no_entry: **You can't chat in this channel, try: '!help'.**").then(msg => {msg.delete(4000)});
 		}
 	}
+	else if(message.channel.name == "staff-chat") {
+		if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mee6')) {
+			message.delete({timeout:10000});
+		}
+	}
 	else if(message.channel.name == "commands") {
 		if (command === 'help') {
 			 message.channel.send("**Commands help list:**\n- !help\n- !coinflip (!cf)\n- !role [role/list]").then(msg => {msg.delete({timeout:30000})});
