@@ -18,6 +18,12 @@ bot.on('message', message => {
 			return;
 		}
 	}
+	if (!message.author.bot) {
+		if (message.channel.name == "chat" || message.channel.name == "guild-chat") {
+			message.guild.channels.cache.find(c => c.name === 'chat-log').send(message.member.user.tag + " in <#" + message.channel.id + "> (" + message.id + "):\n'`" + message.content + "`'");
+			return;
+		}
+	}
 	
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
