@@ -90,7 +90,7 @@ bot.on('message', message => {
 					message.channel.send(":white_check_mark: Successfully remove role.").then(msg => {msg.delete({timeout:10000})});
 				}
 				else {
-					message.member.roles.add(r => r.name.toLowerCase() === 'update');
+					message.member.roles.add('727903675917533284');
 					message.channel.send(":white_check_mark: Successfully added role.").then(msg => {msg.delete({timeout:10000})});
 				}
 			}
@@ -117,13 +117,19 @@ bot.on('message', message => {
 		else if (command === 'promote') {
 			const mention = message.mentions.members.first();
 			if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail helper')) {
-				message.channel.send("What did you think of <@" + mention + "> as a **Trail Helper**; should this status be kept? Please vote by reacting to this message.\nHelper's need at least **5** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				message.channel.send("Congratulations <@" + mention + ">, you've been accepted as **Helper**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured.*");
+				mention.member.roles.remove('727180920830034050');
+				mention.member.roles.add('726942583024254986');
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
-				message.channel.send("What did you think of <@" + mention + "> as a **Trail Splasher**; should this status be kept? Please vote by reacting to this message.\nSplasher's need at least **4** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				message.channel.send("Congratulations <@" + mention + ">, you've been accepted as **Splasher**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured.*");
+				mention.member.roles.remove('727180786541002812');
+				mention.member.roles.add('726931348698300557');
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
-				message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\Admin's need at least **6** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				message.channel.send("Congratulations <@" + mention + ">, you've been accepted as **Admin**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured.*");
+				mention.member.roles.remove('727180504402624532');
+				mention.member.roles.add('726926448044015656');
 			}
 			message.delete({timeout:1000});
 		}
