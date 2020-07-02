@@ -10,6 +10,15 @@ bot.once('ready', () => {
 });
 
 bot.on('message', message => {
+	let blacklisted = ["fack", "fuck", "niger", "nigger", "idiot", "bitch", "dick", "homo", "gay", "kys", "kill yourself", "kill your self", "kill urself", "kill ur self", "cancer", "f@ck", "f4ck", "d!ck", "d1ck", "b1tch", "b!tch", "g@y", "g4y", "n1gg3r", "nigg3r", "n1gg3r", "n!gger", "n!gg3r", "n1ger", "n!ger", "n1g3r", "n!g3r"];
+	for (var i in blacklisted) {
+		if (message.content.toLowerCase().includes(blacklisted[i].toLowerCase()) && !message.author.bot) {
+			message.delete({timeout:200});
+			message.channel.send(":warning: " + message.member.user.tag + " you cannot use blacklisted words or characters in your message:\n||`" + message.content + "`||").then(msg => {msg.delete(12000)});
+			return;
+		}
+	}
+	
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 
