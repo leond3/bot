@@ -104,13 +104,13 @@ bot.on('message', message => {
 		if (command === 'tv') {
 			const mention = message.mentions.members.first();
 			if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail helper')) {
-				message.channel.send("What did you think of <@" + mention + "> as a **Trail Helper**; should this status be kept? Please vote by reacting to this message.\nHelper's need at least 5 upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				message.channel.send("What did you think of <@" + mention + "> as a **Trail Helper**; should this status be kept? Please vote by reacting to this message.\nHelper's need at least **5** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
-				message.channel.send("What did you think of <@" + mention + "> as a **Trail Splasher**; should this status be kept? Please vote by reacting to this message.\nSplasher's need at least 4 upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				message.channel.send("What did you think of <@" + mention + "> as a **Trail Splasher**; should this status be kept? Please vote by reacting to this message.\nSplasher's need at least **4** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
-				message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\Admin's need at least 6 upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
+				message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\Admin's need at least **6** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍'); await msg.react('👎');});
 			}
 			message.delete({timeout:1000});
 		}
