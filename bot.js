@@ -125,7 +125,7 @@ bot.on('message', message => {
 		}
 		else if (!message.content.startsWith(prefix) && !message.author.bot) {
 			message.delete({timeout:1000});
-			message.channel.send("\:no_entry: **You can't chat in this channel, try: '!help'.**").then(msg => {msg.delete(4000)});
+			message.channel.send("\:no_entry: **You can't chat in this channel, try: '!help'.**").then(msg => {msg.delete({timeout:4000})});
 		}
 	}
 	else if(message.channel.name == "trail-vote") {
@@ -141,7 +141,7 @@ bot.on('message', message => {
 				message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\Admin's need at least **6** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍').catch(); await msg.react('👎').catch();});
 			}
 			else {
-				message.channel.send("\:no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete(4000)});
+				message.channel.send("\:no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete({timeout:10000})});
 			}
 			message.delete({timeout:1000});
 		}
@@ -163,7 +163,7 @@ bot.on('message', message => {
 				mention.roles.add('726926448044015656');
 			}
 			else {
-				message.channel.send("\:no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete(4000)});
+				message.channel.send("\:no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete({timeout:10000})});
 			}
 			message.delete({timeout:1000});
 		}
@@ -171,15 +171,16 @@ bot.on('message', message => {
 	else if (message.channel.name == "dev-channel") {
 		if (command === 'nick') {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
-				message.channel.send("\:warning: You cannot nick whilst already nicked, please type: `!unnick`!");
+				message.channel.send("\:warning: You cannot nick whilst already nicked, please type: `!unnick`!").then(msg => {msg.delete({timeout:10000})});
 			}
 			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
 				message.member.setNickname(args[0]);
 				message.member.roles.add('728755013127635037');
-				message.channel.send("\:white_check_mark: Successfully nicked to: " + args[0]);
+				message.channel.send("\:white_check_mark: Successfully nicked to: " + args[0]).then(msg => {msg.delete({timeout:4000})});
 			} else {
-				message.channel.send("\:no_entry: You are not allowed to do this!");
+				message.channel.send("\:no_entry: You are not allowed to do this!").then(msg => {msg.delete({timeout:10000})});
 			}
+			message.delete({timeout:10000})
 		}
 		//if (args[1].toLowerCase() === 'vip') {
 		//	
