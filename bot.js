@@ -36,6 +36,9 @@ bot.on('message', message => {
 		message.delete({timeout:1000});
 	}
 	else if(message.channel.name == "commands") {
+		if (message.author.bot) {
+			return;
+		}
 		if (command === 'help') {
 			 message.channel.send("**Commands help list:**\n- !help\n- !coinflip (!cf)\n- !role [role/list]\n- !mypermissions (!myperms)").then(msg => {msg.delete({timeout:30000})});
 		}
