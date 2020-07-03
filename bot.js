@@ -24,6 +24,10 @@ bot.on('message', message => {
 			return;
 		}
 	}
+	else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mee6')) {
+		message.delete({timeout:30000});
+		return;
+	}
 	
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
@@ -112,11 +116,6 @@ bot.on('message', message => {
 		else if (!message.content.startsWith(prefix) && !message.author.bot) {
 			message.delete({timeout:1000});
 			message.channel.send(":no_entry: **You can't chat in this channel, try: '!help'.**").then(msg => {msg.delete(4000)});
-		}
-	}
-	else if(message.channel.name == "staff-chat") {
-		if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mee6')) {
-			message.delete({timeout:10000});
 		}
 	}
 	else if(message.channel.name == "trail-vote") {
