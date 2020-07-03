@@ -176,15 +176,53 @@ bot.on('message', message => {
 			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
 				message.member.setNickname(args[0]);
 				message.member.roles.add('728755013127635037');
-				message.channel.send("\:white_check_mark: Successfully nicked to: " + args[0]).then(msg => {msg.delete({timeout:4000})});
+				message.channel.send("\:white_check_mark: Successfully nicked.").then(msg => {msg.delete({timeout:4000})});
+				if (args[1].toLowerCase() === 'none' || args[1].toLowerCase() === 'vip' || args[1].toLowerCase() === 'vip+' || args[1].toLowerCase() === 'mvp' || args[1].toLowerCase() === 'mvp+') {
+					if (args[1].toLowerCase() === 'none') {
+						message.member.roles.add('728748298168696852');
+					} else if (args[1].toLowerCase() === 'vip') {
+						message.member.roles.add('726923239049396457');
+					} else if (args[1].toLowerCase() === 'vip+') {
+						message.member.roles.add('726923238331908154');
+					} else if (args[1].toLowerCase() === 'mvp') {
+						message.member.roles.add('726923237812076637');
+					} else if (args[1].toLowerCase() === 'mvp+') {
+						message.member.roles.add('726923236776083569');
+					}
+					message.member.roles.remove('726923236776083569');
+				}
+				message.delete({timeout:200});
+				return;
 			} else {
 				message.channel.send("\:no_entry: You are not allowed to do this!").then(msg => {msg.delete({timeout:10000})});
 			}
-			message.delete({timeout:10000})
+		} else if (command === 'unnick') {
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
+				message.member.roles.remove('728755013127635037');
+				message.channel.send("\:white_check_mark: Successfully unnicked.").then(msg => {msg.delete({timeout:4000})});
+				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+')) {
+				    	if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
+						message.member.roles.remove('728748298168696852');
+					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip')) {
+						message.member.roles.remove('726923239049396457');
+					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+')) {
+						message.member.roles.remove('726923238331908154');
+					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp')) {
+						message.member.roles.remove('726923237812076637');
+					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+')) {
+						message.member.roles.remove('726923236776083569');
+					}
+					message.member.roles.add('726923236776083569');
+				}
+				//hard coded database
+				if (message.member.id === '642081428779040769') {
+					message.member.setNickname("Hehoon");
+				}
+			} else {
+				message.channel.send("\:no_entry: You are not nicked.").then(msg => {msg.delete({timeout:10000})});
+			}
 		}
-		//if (args[1].toLowerCase() === 'vip') {
-		//	
-		//}
+		message.delete({timeout:10000});
 	}
 	
 	function getRandomInt(min, max) {
