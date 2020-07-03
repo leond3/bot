@@ -15,7 +15,7 @@ bot.on('message', message => {
 	for (var i in blacklisted) {
 		if (message.content.toLowerCase().includes(blacklisted[i].toLowerCase()) && !message.author.bot) {
 			message.delete({timeout:200});
-			message.channel.send(":warning: " + message.member.user.tag + " you cannot use blacklisted words or characters in your message:\n||`" + message.content + "`||").then(msg => {msg.delete({timeout:10000})});
+			message.channel.send("\:warning: " + message.member.user.tag + " you cannot use blacklisted words or characters in your message:\n||`" + message.content + "`||").then(msg => {msg.delete({timeout:10000})});
 			return;
 		}
 	}
@@ -52,7 +52,7 @@ bot.on('message', message => {
 		else if (command === 'coinflip' || command === 'cf') {
 			var cf = Array(2);
 			cf[1] = "Heads";
-			cf[2] = "Tails";
+			cf[2] = "Tails";f
 			
 			var coinflip = getRandomInt(1, 3);
 			if (coinflip === 1) { message.channel.send("It's **" + cf[1] + "**!").then(msg => {msg.delete({timeout:10000})}); }
@@ -60,7 +60,7 @@ bot.on('message', message => {
 		}
 		else if (command === 'role') {
 			if (!args[0]) {
-				message.channel.send(":no_entry: You didn't specify an argument, try **`!role list`**.").then(msg => {msg.delete({timeout:4000})});
+				message.channel.send("\:no_entry: You didn't specify an argument, try **`!role list`**.").then(msg => {msg.delete({timeout:4000})});
 			}
 			else if (args[0].toLowerCase() === 'list') {
 				message.channel.send("**Commands help list:**\n- Splash\n- Update").then(msg => {msg.delete({timeout:10000})});
@@ -68,25 +68,25 @@ bot.on('message', message => {
 			else if (args[0].toLowerCase() === 'splash') {
 				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'splash')) {
 					message.member.roles.remove('727099300743479356');
-					message.channel.send(":white_check_mark: Successfully remove role.").then(msg => {msg.delete({timeout:10000})});
+					message.channel.send("\:white_check_mark: Successfully remove role.").then(msg => {msg.delete({timeout:10000})});
 				}
 				else {
 					message.member.roles.add('727099300743479356');
-					message.channel.send(":white_check_mark: Successfully added role.").then(msg => {msg.delete({timeout:10000})});
+					message.channel.send("\:white_check_mark: Successfully added role.").then(msg => {msg.delete({timeout:10000})});
 				}
 			}
 			else if (args[0].toLowerCase() === 'update') {
 				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'update')) {
 					message.member.roles.remove('727903675917533284');
-					message.channel.send(":white_check_mark: Successfully remove role.").then(msg => {msg.delete({timeout:10000})});
+					message.channel.send("\:white_check_mark: Successfully remove role.").then(msg => {msg.delete({timeout:10000})});
 				}
 				else {
 					message.member.roles.add('727903675917533284');
-					message.channel.send(":white_check_mark: Successfully added role.").then(msg => {msg.delete({timeout:10000})});
+					message.channel.send("\:white_check_mark: Successfully added role.").then(msg => {msg.delete({timeout:10000})});
 				}
 			}
 			else {
-				message.channel.send(":no_entry: Couldn't find this argument, try **`!role list`**.").then(msg => {msg.delete({timeout:4000})});
+				message.channel.send("\:no_entry: Couldn't find this argument, try **`!role list`**.").then(msg => {msg.delete({timeout:4000})});
 			}
 		}
 		else if (command === 'mypermissions' || command === 'myperms') {
@@ -100,7 +100,7 @@ bot.on('message', message => {
 				message.channel.send("**Your (discord) permissions list:**\n - !mute [user] [reason]\n*disables an users ability to chat*\n - !unmute [user]\n*enables an users ability to chat*").then(msg => {msg.delete({timeout:30000})});
 			}
 			else {
-				message.channel.send("**:no_entry: Your rank doesn't give any discord permissions.**").then(msg => {msg.delete({timeout:10000})});
+				message.channel.send("**\:no_entry: Your rank doesn't give any discord permissions.**").then(msg => {msg.delete({timeout:10000})});
 			}
 		}
 		message.delete({timeout:10000});
@@ -125,7 +125,7 @@ bot.on('message', message => {
 		}
 		else if (!message.content.startsWith(prefix) && !message.author.bot) {
 			message.delete({timeout:1000});
-			message.channel.send(":no_entry: **You can't chat in this channel, try: '!help'.**").then(msg => {msg.delete(4000)});
+			message.channel.send("\:no_entry: **You can't chat in this channel, try: '!help'.**").then(msg => {msg.delete(4000)});
 		}
 	}
 	else if(message.channel.name == "trail-vote") {
@@ -141,7 +141,7 @@ bot.on('message', message => {
 				message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\Admin's need at least **6** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍').catch(); await msg.react('👎').catch();});
 			}
 			else {
-				message.channel.send(":no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete(4000)});
+				message.channel.send("\:no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete(4000)});
 			}
 			message.delete({timeout:1000});
 		}
@@ -163,13 +163,24 @@ bot.on('message', message => {
 				mention.roles.add('726926448044015656');
 			}
 			else {
-				message.channel.send(":no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete(4000)});
+				message.channel.send("\:no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete(4000)});
 			}
 			message.delete({timeout:1000});
 		}
 	}
 	else if (message.channel.name == "dev-channel") {
-		message.member.setNickname(args[0]);
+		if (command === 'nick') {
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
+				message.channel.send("\:warning: You cannot nick whilst already nicked, please type: `!unnick`!");
+			}
+			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
+				message.member.setNickname(args[0]);
+				message.member.roles.add('728755013127635037');
+				message.channel.send("\:white_check_mark: Successfully nicked to: " + args[0]);
+			} else {
+				message.channel.send("\:no_entry: You are not allowed to do this!");
+			}
+		}
 		//if (args[1].toLowerCase() === 'vip') {
 		//	
 		//}
