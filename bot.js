@@ -29,6 +29,12 @@ bot.on('message', message => {
 		return;
 	}
 	
+	if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'no rank')) {
+		if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
+			message.member.roles.remove('728748298168696852');
+		}
+	}
+	
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 
@@ -40,7 +46,7 @@ bot.on('message', message => {
 			return;
 		}
 		if (command === 'help') {
-			 message.channel.send("**Commands help list:**\n- !help\n- !coinflip (!cf)\n- !role [role/list]\n- !mypermissions (!myperms)").then(msg => {msg.delete({timeout:30000})});
+			 message.channel.send("**Commands help list:**\n- !help\n- !coinflip (!cf)\n- !role [role/list]\n- !mypermissions (!myperms)\n- v!verify [in-game username]").then(msg => {msg.delete({timeout:30000})});
 		}
 		else if (command === 'coinflip' || command === 'cf') {
 			var cf = Array(2);
