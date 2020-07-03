@@ -5,8 +5,9 @@ const bot = new Discord.Client();
 
 bot.once('ready', () => {
 	console.log('? bot responded and is operational!');
-	client.user.setStatus('online');
-	client.user.setActivity('? bot');
+	bot.user.setStatus('online');
+	bot.user.setActivity('Well this name sucks');
+	bot.user.setUsername("Wise Ain't Profit");
 });
 
 bot.on('message', message => {
@@ -166,6 +167,9 @@ bot.on('message', message => {
 			}
 			message.delete({timeout:1000});
 		}
+	}
+	else if (message.channel.name == "dev-channel") {
+		message.guild.members.get(message.user.id).setNickname(args[0]);
 	}
 	
 	function getRandomInt(min, max) {
