@@ -169,7 +169,10 @@ bot.on('message', message => {
 		}
 	}
 	else if (message.channel.name == "dev-channel") {
-		message.guild.members.get(message.user.id).setNickname(args[0]);
+		message.member.setNickname(args[0]);
+		//if (args[1].toLowerCase() === 'vip') {
+		//	
+		//}
 	}
 	
 	function getRandomInt(min, max) {
