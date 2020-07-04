@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const { prefix } = require("./config.json");
 
 const fs = require("fs");
-let username = JSON.parse(fs.readFileSync("name.json"));
+let username = JSON.parse(fs.readFileSync("./name.json"));
 
 const bot = new Discord.Client();
 
@@ -41,28 +41,6 @@ bot.on('message', message => {
 	
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
-
-	if (message.channel.name == "dev-channel") {
-		if (message.content.startsWith("v!verify")) {
-			const editmsgname = message.content.slice(9);
-			username[message.author.id] = {
-				username: editmsgname
-			};
-			fs.writeFile("name.json", JSON.stringify(username, null, 2), (err) => {
-				if(err) console.log(err);
-			});
-			message.delete({timeout:10000});
-			message.channel.send(":white_check_mark: Username registered as `" + message.content.slice(9) + "`.").then(msg => {msg.delete({timeout:10000})});
-		} else 	if (command === 'link') {
-			if (username[message.author.id]) {
-				message.channel.send(":white_check_mark: Data: " + username[message.author.id].username).then(msg => {msg.delete({timeout:10000})});
-			}
-			else {
-				message.channel.send(":warning: Undefined.").then(msg => {msg.delete({timeout:10000})});
-			}
-			message.delete({timeout:10000});
-		}
-	}
 
 	if(message.channel.name == "verify" || message.channel.name == "apply-for-rank") {
 		message.delete({timeout:1000});
@@ -129,33 +107,39 @@ bot.on('message', message => {
 			}
 		}
 		if (command === 'nick') {
-			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
-				message.channel.send("\:warning: You cannot nick whilst already nicked, please type: `!unnick`!").then(msg => {msg.delete({timeout:10000})});
-			}
 			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
-				message.member.setNickname(args[0]);
-				message.member.roles.add('728755013127635037');
-				message.channel.send("\:white_check_mark: Successfully nicked.").then(msg => {msg.delete({timeout:4000})});
-				if (args[1]) {
-					if (args[1].toLowerCase() === 'none' || args[1].toLowerCase() === 'vip' || args[1].toLowerCase() === 'vip+' || args[1].toLowerCase() === 'mvp' || args[1].toLowerCase() === 'mvp+') {
-						if (args[1].toLowerCase() === 'none') {
-							message.member.roles.add('728748298168696852');
-						} else if (args[1].toLowerCase() === 'vip') {
-							message.member.roles.add('726923239049396457');
-						} else if (args[1].toLowerCase() === 'vip+') {
-							message.member.roles.add('726923238331908154');
-						} else if (args[1].toLowerCase() === 'mvp') {
-							message.member.roles.add('726923237812076637');
-						} else if (args[1].toLowerCase() === 'mvp+') {
-							message.member.roles.add('726923237614682133');
-						}
-						message.member.roles.remove('726923236776083569');
+				if (args[0]) {
+					message.member.setNickname(args[0]);
+					if (!message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
+						message.member.roles.add('728755013127635037');
 					}
-				}				
+					message.channel.send(":white_check_mark: Successfully nicked.").then(msg => {msg.delete({timeout:4000})});
+					if (args[1]) {
+						if (args[1].toLowerCase() === 'none' || args[1].toLowerCase() === 'vip' || args[1].toLowerCase() === 'vip+' || args[1].toLowerCase() === 'mvp' || args[1].toLowerCase() === 'mvp+') {
+							if (args[1].toLowerCase() === 'none') {
+								message.member.roles.add('728748298168696852');
+							} else if (args[1].toLowerCase() === 'vip') {
+								message.member.roles.add('726923239049396457');
+							} else if (args[1].toLowerCase() === 'vip+') {
+								message.member.roles.add('726923238331908154');
+							} else if (args[1].toLowerCase() === 'mvp') {
+								message.member.roles.add('726923237812076637');
+							} else if (args[1].toLowerCase() === 'mvp+') {
+								message.member.roles.add('726923237614682133');
+							}
+							message.member.roles.remove('726923236776083569');
+						}
+					}
+				}
+				else {
+					message.channel.send(":no_entry: You've to specify a nickname!").then(msg => {msg.delete({timeout:4000})});
+				}
 				message.delete({timeout:200});
 				return;
+				}
+				
 			} else {
-				message.channel.send("\:no_entry: This command is currently is a beta fase, only `@mvp++` may use this command right now.").then(msg => {msg.delete({timeout:10000})});
+				message.channel.send(":no_entry: This command is currently is a beta fase, only `@mvp++` may use this command right now.").then(msg => {msg.delete({timeout:10000})});
 			}
 		} else if (command === 'unnick') {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
@@ -174,17 +158,8 @@ bot.on('message', message => {
 					}
 					message.member.roles.add('726923236776083569');
 				}
-				//hard coded database
-				if (message.member.id === '642081428779040769') {
-					message.member.setNickname("Hehoon");
-				} else if (message.member.id === '280751294740955136') {
-					message.member.setNickname("Bhlue_");
-				} else if (message.member.id === '710095887493496902') {
-					message.member.setNickname("fan_19");
-				} else if (message.member.id === '609816158991810596') {
-					message.member.setNickname("JustCad");
-				} else if (message.member.id === '512681589763997707') {
-					message.member.setNickname("maxlp45");
+				if (username[message.author.id])
+					message.member.setNickname(username[message.author.id]);
 				} else {
 					message.channel.send("\:warning: Couldn't find your in-game username in the database. Please try again later. You'll have to verify your account again by typing **'v!verify [in-game username]'**").then(msg => {msg.delete({timeout:10000})});
 					message.member.roles.add('728748298168696852');
