@@ -201,7 +201,6 @@ bot.on('message', message => {
 		} else if (command === 'unnick') {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
 				message.member.roles.remove('728755013127635037');
-				message.channel.send("\:white_check_mark: Successfully unnicked.").then(msg => {msg.delete({timeout:4000})});
 				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+')) {
 				    	if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
 						message.member.roles.remove('728748298168696852');
@@ -219,7 +218,21 @@ bot.on('message', message => {
 				//hard coded database
 				if (message.member.id === '642081428779040769') {
 					message.member.setNickname("Hehoon");
+				} else if (message.member.id === '280751294740955136') {
+					message.member.setNickname("Bhlue_");
+				} else if (message.member.id === '710095887493496902') {
+					message.member.setNickname("fan_19");
+				} else if (message.member.id === '609816158991810596') {
+					message.member.setNickname("JustCad");
+				} else if (message.member.id === '512681589763997707') {
+					message.member.setNickname("maxlp45");
+				} else {
+					message.channel.send("\:warning: Couldn't find your in-game username in the database. Please try again later. You'll have to verify your account again by typing **'v!verify [in-game username]'**").then(msg => {msg.delete({timeout:10000})});
+					message.member.roles.add('728748298168696852');
+					message.member.roles.remove('726923236776083569');
+					return;
 				}
+				message.channel.send("\:white_check_mark: Successfully unnicked.").then(msg => {msg.delete({timeout:4000})});
 			} else {
 				message.channel.send("\:no_entry: You are not nicked.").then(msg => {msg.delete({timeout:10000})});
 			}
