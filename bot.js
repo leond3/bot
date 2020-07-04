@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const { prefix } = require('./config.json');
 
 const fs = require('fs');
-const name = require('./name.json');
+let username = require('./name.json');
 
 const bot = new Discord.Client();
 
@@ -45,10 +45,12 @@ bot.on('message', message => {
 	if (message.channel.name == "dev-channel") {
 		if (message.content.startsWith("v!verify")) {
 			editmsgname = message.content.slice(9);
-			name[message.author.username] = {
+			username[message.author.username] = {
 				message: editmsgname
-			}
-			fs.writeFile("./name.json", JSON.stringify(name, null, 4), err => {if(err) throw err});
+			};
+			fs.writeFile("./name.json", JSON.stringify(name, null, 4), err =>
+				{if(err) console.log(err)
+			});
 		}
 	}
 
