@@ -48,12 +48,12 @@ bot.on('message', message => {
 			username[message.author.id] = {
 				username: editmsgname
 			};
-			fs.writeFile("./name.json", JSON.stringify(username, null, 2), (err) => {
+			fs.write("./name.json", JSON.stringify(username, null, 2), (err) => {
 				if(err) console.log(err);
 			});
 			message.delete({timeout:10000});
 			message.channel.send(":white_check_mark: Username registered as `" + message.content.slice(9) + "`.").then(msg => {msg.delete({timeout:10000})});
-		} else 	if (command === 'test') {
+		} else 	if (command === 'link') {
 			if (username[message.author.id]) {
 				message.channel.send(":white_check_mark: Data: " + username[message.author.id].username).then(msg => {msg.delete({timeout:10000})});
 			}
