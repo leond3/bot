@@ -48,7 +48,7 @@ bot.on('message', message => {
 				username: message.content.slice(9)
 			};
 			fs.writeFile("./name.json", JSON.stringify(username), (err) => {
-				if(err) console.log(err)
+				if(err) console.log(err);
 			});
 			message.delete({timeout:10000});
 			message.channel.send("Command registered: " + message.content.slice(9)).then(msg => {msg.delete({timeout:10000})});
