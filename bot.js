@@ -45,13 +45,14 @@ bot.on('message', message => {
 	if (message.channel.name == "dev-channel") {
 		if (message.content.startsWith("v!verify")) {
 			username[message.author.id] = {
-				message: message.content.slice(9)
+				username: message.content.slice(9)
 			};
-			fs.writeFile("./name.json", JSON.stringify(username, null, 4), err =>
-				{if(err) console.log(err)
+			fs.writeFile("./name.json", JSON.stringify(username), (err) => {
+				if(err) console.log(err)
 			});
 			message.delete({timeout:10000});
 			message.channel.send("Command registered.").then(msg => {msg.delete({timeout:10000})});
+			console.log(message.content.slice(9));
 		}
 	}
 
