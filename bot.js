@@ -49,7 +49,7 @@ bot.on('message', message => {
 			return;
 		}
 		if (command === 'help') {
-			 message.channel.send("**Commands help list:**\n- !help\n- !coinflip (!cf)\n- !role [role/list]\n- !mypermissions (!myperms)\n- v!verify [in-game username]\n- !nick [nickname] [rank]\n- !unnick").then(msg => {msg.delete({timeout:30000})});
+			 message.channel.send("**Commands help list:**\n- !help\n*Shows this help list.*\n- !coinflip (!cf)\n*Flips a coin, can be heads or tails.*\n- !role [role/list]\n*Self assign/remove pingable roles.*\n- !mypermissions (!myperms)\n*Shows all your additional (unlisted) permissions.*\n- v!verify [in-game username]\n*Updates your roles as well as removes any existing ghost roles.*\n- !nick [nickname] [rank]\n*Change your username and rank.*\n- !unnick\n*Removes your nicked status.*").then(msg => {msg.delete({timeout:30000})});
 		}
 		else if (command === 'coinflip' || command === 'cf') {
 			var cf = Array(2);
@@ -91,6 +91,7 @@ bot.on('message', message => {
 					message.member.roles.remove('728748298168696852');
 				}
 			}
+			message.channel.send(":white_check_mark: Your rules are currently being updated. Any ghost roles will be removed.").then(msg => {msg.delete({timeout:10000})});
 		}
 		else if (command === 'role') {
 			if (!args[0]) {
