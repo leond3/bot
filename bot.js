@@ -94,13 +94,13 @@ bot.on('message', message => {
 		}
 		else if (command === 'mypermissions' || command === 'myperms') {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'admin')) {
-				message.channel.send("**Your (discord) permissions list:**\n - !ban [user] [reason]\n*bans a user from the discord*\n - !unban [user]\n*unbans a user from the discord*\n - !kick [user] [reason]\n*removes a user from the discord*\n - !mute [user] [reason]\n*disables an users ability to chat*\n - !unmute [user]\n*enables an users ability to chat*\n - !tv [user]\n*starts a trail vote (must be send in <#727255140293279827>)*\n - !promote [user]\n*promotes an user from trail status (must be send in <#727255140293279827>)*").then(msg => {msg.delete({timeout:30000})});
+				message.channel.send("**Your (discord) permissions list:**\n - !ban [mention] [reason]\n*bans a user from the discord*\n - !unban [mention]\n*unbans a user from the discord*\n - !kick [mention] [reason]\n*removes a user from the discord*\n - !mute [mention] [reason]\n*disables an users ability to chat*\n - !unmute [mention]\n*enables an users ability to chat*\n - !tv [mention]\n*starts a trail vote (must be send in <#727255140293279827>)*\n - !promote [mention]\n*promotes an user from trail status (must be send in <#727255140293279827>)*\n - !accept [mention]\n*accepts a role request (must be send in <#728991321012043777>)*").then(msg => {msg.delete({timeout:30000})});
 			}
 			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
-				message.channel.send("**Your (discord) permissions list:**\n - !mute [user] [reason]\n*disables an users ability to chat*\n - !unmute [user]\n*enables an users ability to chat*").then(msg => {msg.delete({timeout:30000})});
+				message.channel.send("**Your (discord) permissions list:**\n - !mute [mention] [reason]\n*disables an users ability to chat*\n - !unmute [mention]\n*enables an users ability to chat*").then(msg => {msg.delete({timeout:30000})});
 			}
 			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'helper')) {
-				message.channel.send("**Your (discord) permissions list:**\n - !mute [user] [reason]\n*disables an users ability to chat*\n - !unmute [user]\n*enables an users ability to chat*").then(msg => {msg.delete({timeout:30000})});
+				message.channel.send("**Your (discord) permissions list:**\n - !mute [mention] [reason]\n*disables an users ability to chat*\n - !unmute [mention]\n*enables an users ability to chat*").then(msg => {msg.delete({timeout:30000})});
 			}
 			else {
 				message.channel.send("**\:no_entry: Your rank doesn't give any discord permissions.**").then(msg => {msg.delete({timeout:10000})});
