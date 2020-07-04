@@ -14,7 +14,7 @@ bot.once('ready', () => {
 });
 
 bot.on('message', message => {
-	let blacklisted = ["fack", "fuck", "niger", "nigger", "idiot", "bitch", "dick", "homo", "gay", "kys", "kill yourself", "kill your self", "kill urself", "kill ur self", "cancer", "f@ck", "f4ck", "d!ck", "d1ck", "b1tch", "b!tch", "g@y", "g4y", "n1gg3r", "nigg3r", "n1gg3r", "n!gger", "n!gg3r", "n1ger", "n!ger", "n1g3r", "n!g3r"];
+	/*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/let blacklisted = ["fack", "fuck", "niger", "nigger", "idiot", "bitch", "dick", "homo", "gay", "kys", "kill yourself", "kill your self", "kill urself", "kill ur self", "cancer", "f@ck", "f4ck", "d!ck", "d1ck", "b1tch", "b!tch", "g@y", "g4y", "n1gg3r", "nigg3r", "n1gg3r", "n!gger", "n!gg3r", "n1ger", "n!ger", "n1g3r", "n!g3r"];
 	for (var i in blacklisted) {
 		if (message.content.toLowerCase().includes(blacklisted[i].toLowerCase()) && !message.author.bot) {
 			message.delete({timeout:200});
@@ -44,13 +44,13 @@ bot.on('message', message => {
 
 	if (message.channel.name == "dev-channel") {
 		if (command === 'run') {
-			message.guild.roles.create({data:{name:message.author.name,color:'#111111',},reason:'-',}).catch(console.error);
+			message.guild.roles.create({data:{name:"(NICKED) " + message.member.displayName,color:'#111111',},reason:'-',}).catch(console.error);
 			//
 			message.channel.send("Command registered!").then(msg => {msg.delete({timeout:4000})});
 			message.delete({timeout:4000});
 		}
 		else if (command === 'test') {
-			message.guild.roles.create({data:{name:"(NICKED) " + message.author.name,color:'#111111',},reason:'-',}).catch(console.error);
+			message.guild.roles.create({data:{name:"(NICKED) " + message.member.displayName,color:'#111111'}}).catch(console.error);
 			//
 			message.channel.send("Command registered!").then(msg => {msg.delete({timeout:4000})});
 			message.delete({timeout:4000});
