@@ -51,7 +51,7 @@ bot.on('message', message => {
 				if(err) console.log(err)
 			});
 			message.delete({timeout:10000});
-			message.channel.send("Command registered.").then(msg => {msg.delete({timeout:10000})});
+			message.channel.send("Command registered: " + message.content.slice(9)).then(msg => {msg.delete({timeout:10000})});
 		}
 	}
 
@@ -68,7 +68,7 @@ bot.on('message', message => {
 		else if (command === 'coinflip' || command === 'cf') {
 			var cf = Array(2);
 			cf[1] = "Heads";
-			cf[2] = "Tails";f
+			cf[2] = "Tails";
 			
 			var coinflip = getRandomInt(1, 3);
 			if (coinflip === 1) { message.channel.send("It's **" + cf[1] + "**!").then(msg => {msg.delete({timeout:10000})}); }
