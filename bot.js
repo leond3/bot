@@ -33,12 +33,6 @@ bot.on('message', message => {
 		return;
 	}
 	
-	if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'no rank')) {
-		if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
-			message.member.roles.remove('728748298168696852');
-		}
-	}
-	
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 	
@@ -65,6 +59,23 @@ bot.on('message', message => {
 			var coinflip = getRandomInt(1, 3);
 			if (coinflip === 1) { message.channel.send("It's **" + cf[1] + "**!").then(msg => {msg.delete({timeout:10000})}); }
 			if (coinflip === 2) { message.channel.send("It's **" + cf[2] + "**!").then(msg => {msg.delete({timeout:10000})}); }
+		}
+		else if (message.content.startsWith("v!verify")) {
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
+				message.member.roles.remove('726923236776083569');
+			}
+			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+')) {
+				message.member.roles.remove('726923237614682133');
+			}
+			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp')) {
+				message.member.roles.remove('726923237812076637');
+			}
+			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+')) {
+				message.member.roles.remove('726923238331908154');
+			}
+			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip')) {
+				message.member.roles.remove('726923239049396457');
+			}
 		}
 		else if (command === 'role') {
 			if (!args[0]) {
