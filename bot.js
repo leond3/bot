@@ -48,7 +48,7 @@ bot.on('message', message => {
 			let role = cache.find(role => role.name.toLowerCase() === "(NICKED) " + message.member.displayName).catch(err => console.log(err));
 			message.member.roles.add(role.id).catch(err => console.log(err));
 			//
-			message.channel.send("Command registered!").then(msg => {msg.delete({timeout:4000})});
+			message.channel.send("Command registered! (1)").then(msg => {msg.delete({timeout:4000})});
 			message.delete({timeout:4000});
 		}
 	}
