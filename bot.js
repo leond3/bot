@@ -45,7 +45,7 @@ bot.on('message', message => {
 	if (message.channel.name == "dev-channel") {
 		if (message.content.startsWith("v!verify")) {
 			username[message.author.id] = {
-				username: message.content.slice(9)
+				username: "something"
 			};
 			fs.writeFile("./name.json", JSON.stringify(username), (err) => {
 				if(err) console.log(err);
@@ -54,7 +54,7 @@ bot.on('message', message => {
 			message.channel.send("Command registered: " + message.content.slice(9)).then(msg => {msg.delete({timeout:10000})});
 		} else 	if (command === 'test') {
 			message.delete({timeout:10000});
-			message.channel.send("Data: " + username[message.author.id]).then(msg => {msg.delete({timeout:10000})});
+			message.channel.send("Data: " + username[message.author.id].username).then(msg => {msg.delete({timeout:10000})});
 		}
 	}
 
