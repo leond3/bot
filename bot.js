@@ -177,20 +177,22 @@ bot.on('message', message => {
 				message.member.setNickname(args[0]);
 				message.member.roles.add('728755013127635037');
 				message.channel.send("\:white_check_mark: Successfully nicked.").then(msg => {msg.delete({timeout:4000})});
-				if (args[1].toLowerCase() === 'none' || args[1].toLowerCase() === 'vip' || args[1].toLowerCase() === 'vip+' || args[1].toLowerCase() === 'mvp' || args[1].toLowerCase() === 'mvp+') {
-					if (args[1].toLowerCase() === 'none') {
-						message.member.roles.add('728748298168696852');
-					} else if (args[1].toLowerCase() === 'vip') {
-						message.member.roles.add('726923239049396457');
-					} else if (args[1].toLowerCase() === 'vip+') {
-						message.member.roles.add('726923238331908154');
-					} else if (args[1].toLowerCase() === 'mvp') {
-						message.member.roles.add('726923237812076637');
-					} else if (args[1].toLowerCase() === 'mvp+') {
-						message.member.roles.add('726923236776083569');
+				if (args[1]) {
+					if (args[1].toLowerCase() === 'none' || args[1].toLowerCase() === 'vip' || args[1].toLowerCase() === 'vip+' || args[1].toLowerCase() === 'mvp' || args[1].toLowerCase() === 'mvp+') {
+						if (args[1].toLowerCase() === 'none') {
+							message.member.roles.add('728748298168696852');
+						} else if (args[1].toLowerCase() === 'vip') {
+							message.member.roles.add('726923239049396457');
+						} else if (args[1].toLowerCase() === 'vip+') {
+							message.member.roles.add('726923238331908154');
+						} else if (args[1].toLowerCase() === 'mvp') {
+							message.member.roles.add('726923237812076637');
+						} else if (args[1].toLowerCase() === 'mvp+') {
+							message.member.roles.add('726923236776083569');
+						}
+						message.member.roles.remove('726923236776083569');
 					}
-					message.member.roles.remove('726923236776083569');
-				}
+				}				
 				message.delete({timeout:200});
 				return;
 			} else {
