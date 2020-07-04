@@ -249,9 +249,14 @@ bot.on('message', message => {
 	}
 	else if(message.channel.name == "role-request") {
 		if (command === 'accept') {
-			const mention = message.mentions.members.first();
-			mention.roles.add('728990103678091335');
-			message.channel.send(":white_check_mark: Success!").then(msg => {msg.delete({timeout:1000})});
+			if (message.roles.cache.some(r => r.name.toLowerCase() === 'admin')) {
+				const mention = message.mentions.members.first();
+				mention.roles.add('728990103678091335');
+				message.channel.send(":white_check_mark: Success!").then(msg => {msg.delete({timeout:1000})});
+			}
+			else {
+				message.channel.send(":no_entry: Invalid permission!").then(msg => {msg.delete({timeout:1000})});
+			}
 			message.delete({timeout:1000});
 		}
 	}
