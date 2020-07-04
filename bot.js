@@ -42,6 +42,12 @@ bot.on('message', message => {
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 
+	if (message.channel.name == "dev-channel") {
+		if (command === 'run') {
+			message.guild.roles.create({data:{name:'Test role',color:'#111111',},reason:'-',}).catch(console.error);
+		}
+	}
+	
 	if(message.channel.name == "verify" || message.channel.name == "apply-for-rank") {
 		message.delete({timeout:1000});
 	}
