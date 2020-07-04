@@ -44,10 +44,10 @@ bot.on('message', message => {
 
 	if (message.channel.name == "dev-channel") {
 		if (message.content.startsWith("v!verify")) {
-			namedata[message.author.id] = {
+			username[message.author.id] = {
 				username: message.content.slice(9)
 			};
-			fs.writeFile("./name.json", JSON.stringify(namedata), (err) => {
+			fs.writeFile("./name.json", JSON.stringify(username), (err) => {
 				if(err) console.log(err)
 			});
 			message.delete({timeout:10000});
