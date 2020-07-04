@@ -45,7 +45,8 @@ bot.on('message', message => {
 	if (message.channel.name == "dev-channel") {
 		if (command === 'run') {
 			message.guild.roles.create({data:{name:"(NICKED) " + message.member.displayName,color:'#111111'}}).catch();
-			message.member.roles.add(r => r.name.toLowerCase().id === "(nicked) " + message.member.displayName).catch();
+			let role = cache.find(role => role.name.toLowerCase() === "(NICKED) " + message.member.displayName).catch(err => console.log(err));
+			message.member.roles.add(role.id).catch(err => console.log(err));
 			//
 			message.channel.send("Command registered!").then(msg => {msg.delete({timeout:4000})});
 			message.delete({timeout:4000});
