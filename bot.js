@@ -44,13 +44,7 @@ bot.on('message', message => {
 
 	if (message.channel.name == "dev-channel") {
 		if (command === 'run') {
-			message.guild.roles.create({data:{name:"(NICKED) " + message.member.displayName,color:'#111111',},reason:'-',}).catch(console.error);
-			//
-			message.channel.send("Command registered!").then(msg => {msg.delete({timeout:4000})});
-			message.delete({timeout:4000});
-		}
-		else if (command === 'test') {
-			message.guild.roles.create({data:{name:"(NICKED) " + message.member.displayName,color:'#111111'}}).catch(console.error);
+			message.guild.roles.create({data:{name:"(NICKED) " + message.member.displayName,color:'#111111'}}).catch().then(async msg => {await msg.member.roles.add().catch();});
 			//
 			message.channel.send("Command registered!").then(msg => {msg.delete({timeout:4000})});
 			message.delete({timeout:4000});
