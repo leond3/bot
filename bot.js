@@ -61,6 +61,10 @@ bot.on('message', message => {
 			if (coinflip === 2) { message.channel.send("It's **" + cf[2] + "**!").then(msg => {msg.delete({timeout:10000})}); }
 		}
 		else if (message.content.startsWith("v!verify")) {
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
+				message.channel.send(":warning: Oops! It appears you're currently nicked, please **`!unnick`** to remove any ghost roles.").then(msg => {msg.delete({timeout:10000})});
+				return;
+			}
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
 				message.member.roles.remove('726923236776083569');
 				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
