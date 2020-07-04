@@ -44,7 +44,10 @@ bot.on('message', message => {
 
 	if (message.channel.name == "dev-channel") {
 		if (command === 'run') {
-			message.guild.roles.create({data:{name:'Test role',color:'#111111',},reason:'-',}).catch(console.error);
+			message.guild.roles.create({data:{name:message.author.id,color:'#111111',},reason:'-',}).catch(console.error);
+			//
+			message.channel.send("Command registered!").then(msg => {msg.delete({timeout:4000})});
+			message.delete({timeout:4000});
 		}
 	}
 	
