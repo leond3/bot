@@ -52,7 +52,6 @@ bot.on('message', message => {
 			});
 			message.delete({timeout:10000});
 			message.channel.send("Command registered.").then(msg => {msg.delete({timeout:10000})});
-			console.log(message.content.slice(9));
 		}
 	}
 
