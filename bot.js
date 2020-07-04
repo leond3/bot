@@ -44,6 +44,13 @@ bot.on('message', message => {
 
 	if(message.channel.name == "verify" || message.channel.name == "apply-for-rank") {
 		message.delete({timeout:1000});
+		if (message.content.startsWith("v!verify")) {
+			editmsgname = message.content.slice(9);
+			name[message.author.username] = {
+				[message.author.username]: [message.content.slice(9)]
+			}
+			fs.writeFile("./name.json", JSON.stringify(name, null, 4), err => {if(err) throw err});
+		}
 	}
 	else if(message.channel.name == "commands") {
 		if (message.author.bot) {
