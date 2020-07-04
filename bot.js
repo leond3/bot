@@ -112,6 +112,19 @@ bot.on('message', message => {
 					message.member.setNickname(args[0]);
 					if (!message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
 						message.member.roles.add('728755013127635037');
+					} else {
+						if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
+							message.member.roles.remove('728748298168696852');
+						} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip')) {
+							message.member.roles.remove('726923239049396457');
+						} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+')) {
+							message.member.roles.remove('726923238331908154');
+						} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp')) {
+							message.member.roles.remove('726923237812076637');
+						} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+')) {
+							message.member.roles.remove('726923237614682133');
+						}
+						message.member.roles.add('726923236776083569');
 					}
 					message.channel.send(":white_check_mark: Successfully nicked.").then(msg => {msg.delete({timeout:4000})});
 					if (args[1]) {
