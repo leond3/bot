@@ -44,8 +44,9 @@ bot.on('message', message => {
 
 	if (message.channel.name == "dev-channel") {
 		if (message.content.startsWith("v!verify")) {
+			const editmsgname = message.content.slice(9);
 			username[message.author.id] = {
-				username: "something"
+				username: editmsgname
 			};
 			fs.writeFile("./name.json", JSON.stringify(username), (err) => {
 				if(err) console.log(err);
