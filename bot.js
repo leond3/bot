@@ -42,15 +42,18 @@ bot.on('message', message => {
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 
-	if(message.channel.name == "verify" || message.channel.name == "apply-for-rank") {
-		message.delete({timeout:1000});
+	if (message.channel.name == "dev-channel") {
 		if (message.content.startsWith("v!verify")) {
 			editmsgname = message.content.slice(9);
 			name[message.author.username] = {
-				[message.author.username]: [message.content.slice(9)]
+				message: editmsgname
 			}
 			fs.writeFile("./name.json", JSON.stringify(name, null, 4), err => {if(err) throw err});
 		}
+	}
+
+	if(message.channel.name == "verify" || message.channel.name == "apply-for-rank") {
+		message.delete({timeout:1000});
 	}
 	else if(message.channel.name == "commands") {
 		if (message.author.bot) {
