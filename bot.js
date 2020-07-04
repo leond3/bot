@@ -106,7 +106,7 @@ bot.on('message', message => {
 				message.channel.send("**\:no_entry: Your rank doesn't give any discord permissions.**").then(msg => {msg.delete({timeout:10000})});
 			}
 		}
-		if (command === 'nick') {
+		else if (command === 'nick') {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
 				if (args[0]) {
 					message.member.setNickname(args[0]);
@@ -156,7 +156,7 @@ bot.on('message', message => {
 					}
 					message.member.roles.add('726923236776083569');
 				}
-				if (username[message.author.id])
+				if (username[message.author.id]) {
 					message.member.setNickname(username[message.author.id]);
 				} else {
 					message.channel.send("\:warning: Couldn't find your in-game username in the database. Please try again later. You'll have to verify your account again by typing **'v!verify [in-game username]'**").then(msg => {msg.delete({timeout:10000})});
