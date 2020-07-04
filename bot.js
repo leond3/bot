@@ -51,6 +51,8 @@ bot.on('message', message => {
 			fs.writeFile("./name.json", JSON.stringify(username, null, 4), err =>
 				{if(err) console.log(err)
 			});
+			message.delete({timeout:10000});
+			message.channel.send("**Command registered.").then(msg => {msg.delete({timeout:10000})});
 		}
 	}
 
