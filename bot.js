@@ -48,7 +48,7 @@ bot.on('message', message => {
 			username[message.author.username] = {
 				message: editmsgname
 			};
-			fs.writeFile("./name.json", JSON.stringify(name, null, 4), err =>
+			fs.writeFile("./name.json", JSON.stringify(username, null, 4), err =>
 				{if(err) console.log(err)
 			});
 		}
