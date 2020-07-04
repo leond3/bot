@@ -46,7 +46,7 @@ bot.on('message', message => {
 		if (command === 'run') {
 			async msg => {await msg.guild.roles.create({data:{name:"(NICKED) " + message.member.displayName,color:'#111111'}}).catch(); await msg.member.roles.add(nickedrole.id).catch();}
 			//
-			message.channel.send("Command registered! (1)").then(msg => {msg.delete({timeout:4000})});
+			message.channel.send("Command registered! (2)").then(msg => {msg.delete({timeout:4000})});
 			message.delete({timeout:4000});
 		}
 	}
