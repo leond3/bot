@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const { prefix } = require("./config.json");
 
 const fs = require("fs");
-let username = JSON.parse(fs.readFileSync("./name.json", "utf8"));
+let username = JSON.parse(fs.readFileSync("name.json"));
 
 const bot = new Discord.Client();
 
@@ -48,7 +48,7 @@ bot.on('message', message => {
 			username[message.author.id] = {
 				username: editmsgname
 			};
-			fs.writeFile("./name.json", JSON.stringify(username), (err) => {
+			fs.writeFile("name.json", JSON.stringify(username, null, 2), (err) => {
 				if(err) console.log(err);
 			});
 			message.delete({timeout:10000});
