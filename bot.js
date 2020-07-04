@@ -28,7 +28,7 @@ bot.on('message', message => {
 			return;
 		}
 	}
-	else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mee6')) {
+	else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mee6') || message.channel.name == "apply-for-rank") {
 		message.delete({timeout:30000});
 		return;
 	}
@@ -36,8 +36,8 @@ bot.on('message', message => {
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 	
-	if(message.channel.name == "verify" || message.channel.name == "apply-for-rank") {
-		message.delete({timeout:1000});
+	if(message.channel.name == "verify") {
+		message.delete({timeout:1000}).then(message.channel.send("test"));
 	}
 	else if(message.channel.name == "commands") {
 		if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'verify')) {
