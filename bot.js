@@ -47,7 +47,7 @@ bot.on('message', message => {
 			return;
 		}
 		if (command === 'help') {
-			 message.channel.send("**Commands help list:**\n- !help\n- !coinflip (!cf)\n- !role [role/list]\n- !mypermissions (!myperms)\n- v!verify [in-game username]").then(msg => {msg.delete({timeout:30000})});
+			 message.channel.send("**Commands help list:**\n- !help\n- !coinflip (!cf)\n- !role [role/list]\n- !mypermissions (!myperms)\n- v!verify [in-game username]\n- !nick [nickname] [rank]\n- !unnick").then(msg => {msg.delete({timeout:30000})});
 		}
 		else if (command === 'coinflip' || command === 'cf') {
 			var cf = Array(2);
@@ -101,6 +101,74 @@ bot.on('message', message => {
 			}
 			else {
 				message.channel.send("**\:no_entry: Your rank doesn't give any discord permissions.**").then(msg => {msg.delete({timeout:10000})});
+			}
+		}
+		if (command === 'nick') {
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
+				message.channel.send("\:warning: You cannot nick whilst already nicked, please type: `!unnick`!").then(msg => {msg.delete({timeout:10000})});
+			}
+			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
+				message.member.setNickname(args[0]);
+				message.member.roles.add('728755013127635037');
+				message.channel.send("\:white_check_mark: Successfully nicked.").then(msg => {msg.delete({timeout:4000})});
+				if (args[1]) {
+					if (args[1].toLowerCase() === 'none' || args[1].toLowerCase() === 'vip' || args[1].toLowerCase() === 'vip+' || args[1].toLowerCase() === 'mvp' || args[1].toLowerCase() === 'mvp+') {
+						if (args[1].toLowerCase() === 'none') {
+							message.member.roles.add('728748298168696852');
+						} else if (args[1].toLowerCase() === 'vip') {
+							message.member.roles.add('726923239049396457');
+						} else if (args[1].toLowerCase() === 'vip+') {
+							message.member.roles.add('726923238331908154');
+						} else if (args[1].toLowerCase() === 'mvp') {
+							message.member.roles.add('726923237812076637');
+						} else if (args[1].toLowerCase() === 'mvp+') {
+							message.member.roles.add('726923237614682133');
+						}
+						message.member.roles.remove('726923236776083569');
+					}
+				}				
+				message.delete({timeout:200});
+				return;
+			} else {
+				message.channel.send("\:no_entry: You are not allowed to do this!").then(msg => {msg.delete({timeout:10000})});
+			}
+		} else if (command === 'unnick') {
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
+				message.member.roles.remove('728755013127635037');
+				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+')) {
+				    	if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
+						message.member.roles.remove('728748298168696852');
+					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip')) {
+						message.member.roles.remove('726923239049396457');
+					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+')) {
+						message.member.roles.remove('726923238331908154');
+					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp')) {
+						message.member.roles.remove('726923237812076637');
+					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+')) {
+						message.member.roles.remove('726923237614682133');
+					}
+					message.member.roles.add('726923236776083569');
+				}
+				//hard coded database
+				if (message.member.id === '642081428779040769') {
+					message.member.setNickname("Hehoon");
+				} else if (message.member.id === '280751294740955136') {
+					message.member.setNickname("Bhlue_");
+				} else if (message.member.id === '710095887493496902') {
+					message.member.setNickname("fan_19");
+				} else if (message.member.id === '609816158991810596') {
+					message.member.setNickname("JustCad");
+				} else if (message.member.id === '512681589763997707') {
+					message.member.setNickname("maxlp45");
+				} else {
+					message.channel.send("\:warning: Couldn't find your in-game username in the database. Please try again later. You'll have to verify your account again by typing **'v!verify [in-game username]'**").then(msg => {msg.delete({timeout:10000})});
+					message.member.roles.add('728748298168696852');
+					message.member.roles.remove('726923236776083569');
+					return;
+				}
+				message.channel.send("\:white_check_mark: Successfully unnicked.").then(msg => {msg.delete({timeout:4000})});
+			} else {
+				message.channel.send("\:no_entry: You are not nicked.").then(msg => {msg.delete({timeout:10000})});
 			}
 		}
 		message.delete({timeout:10000});
@@ -167,77 +235,6 @@ bot.on('message', message => {
 			}
 			message.delete({timeout:1000});
 		}
-	}
-	else if (message.channel.name == "dev-channel") {
-		if (command === 'nick') {
-			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
-				message.channel.send("\:warning: You cannot nick whilst already nicked, please type: `!unnick`!").then(msg => {msg.delete({timeout:10000})});
-			}
-			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
-				message.member.setNickname(args[0]);
-				message.member.roles.add('728755013127635037');
-				message.channel.send("\:white_check_mark: Successfully nicked.").then(msg => {msg.delete({timeout:4000})});
-				if (args[1]) {
-					if (args[1].toLowerCase() === 'none' || args[1].toLowerCase() === 'vip' || args[1].toLowerCase() === 'vip+' || args[1].toLowerCase() === 'mvp' || args[1].toLowerCase() === 'mvp+') {
-						if (args[1].toLowerCase() === 'none') {
-							message.member.roles.add('728748298168696852');
-						} else if (args[1].toLowerCase() === 'vip') {
-							message.member.roles.add('726923239049396457');
-						} else if (args[1].toLowerCase() === 'vip+') {
-							message.member.roles.add('726923238331908154');
-						} else if (args[1].toLowerCase() === 'mvp') {
-							message.member.roles.add('726923237812076637');
-						} else if (args[1].toLowerCase() === 'mvp+') {
-							message.member.roles.add('726923236776083569');
-						}
-						message.member.roles.remove('726923236776083569');
-					}
-				}				
-				message.delete({timeout:200});
-				return;
-			} else {
-				message.channel.send("\:no_entry: You are not allowed to do this!").then(msg => {msg.delete({timeout:10000})});
-			}
-		} else if (command === 'unnick') {
-			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
-				message.member.roles.remove('728755013127635037');
-				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+')) {
-				    	if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
-						message.member.roles.remove('728748298168696852');
-					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip')) {
-						message.member.roles.remove('726923239049396457');
-					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+')) {
-						message.member.roles.remove('726923238331908154');
-					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp')) {
-						message.member.roles.remove('726923237812076637');
-					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+')) {
-						message.member.roles.remove('726923236776083569');
-					}
-					message.member.roles.add('726923236776083569');
-				}
-				//hard coded database
-				if (message.member.id === '642081428779040769') {
-					message.member.setNickname("Hehoon");
-				} else if (message.member.id === '280751294740955136') {
-					message.member.setNickname("Bhlue_");
-				} else if (message.member.id === '710095887493496902') {
-					message.member.setNickname("fan_19");
-				} else if (message.member.id === '609816158991810596') {
-					message.member.setNickname("JustCad");
-				} else if (message.member.id === '512681589763997707') {
-					message.member.setNickname("maxlp45");
-				} else {
-					message.channel.send("\:warning: Couldn't find your in-game username in the database. Please try again later. You'll have to verify your account again by typing **'v!verify [in-game username]'**").then(msg => {msg.delete({timeout:10000})});
-					message.member.roles.add('728748298168696852');
-					message.member.roles.remove('726923236776083569');
-					return;
-				}
-				message.channel.send("\:white_check_mark: Successfully unnicked.").then(msg => {msg.delete({timeout:4000})});
-			} else {
-				message.channel.send("\:no_entry: You are not nicked.").then(msg => {msg.delete({timeout:10000})});
-			}
-		}
-		message.delete({timeout:10000});
 	}
 	
 	function getRandomInt(min, max) {
