@@ -52,13 +52,13 @@ bot.on('message', message => {
 				if(err) console.log(err);
 			});
 			message.delete({timeout:10000});
-			message.channel.send("\:white_check_mark: Username registered as `" + message.content.slice(9) + "`.").then(msg => {msg.delete({timeout:10000})});
+			message.channel.send(":white_check_mark: Username registered as `" + message.content.slice(9) + "`.").then(msg => {msg.delete({timeout:10000})});
 		} else 	if (command === 'test') {
 			if (username[message.author.id]) {
-				message.channel.send("\:white_check_mark: Data: " + username[message.author.id].username).then(msg => {msg.delete({timeout:10000})});
+				message.channel.send(":white_check_mark: Data: " + username[message.author.id].username).then(msg => {msg.delete({timeout:10000})});
 			}
 			else {
-				message.channel.send("\:warning: Undefined.").then(msg => {msg.delete({timeout:10000})});
+				message.channel.send(":warning: Undefined.").then(msg => {msg.delete({timeout:10000})});
 			}
 			message.delete({timeout:10000});
 		}
