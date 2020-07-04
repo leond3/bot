@@ -28,7 +28,7 @@ bot.on('message', message => {
 			return;
 		}
 	}
-	else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mee6') || message.channel.name == "apply-for-rank") {
+	else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mee6')) {
 		message.delete({timeout:30000});
 		return;
 	}
@@ -36,8 +36,9 @@ bot.on('message', message => {
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 	
-	if(message.channel.name == "verify") {
+	if(message.channel.name == "verify" || message.channel.name == "apply-for-rank") {
 		message.delete({timeout:1000});
+		return;
 	}
 	else if(message.channel.name == "commands") {
 		if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'verify')) {
@@ -63,6 +64,7 @@ bot.on('message', message => {
 		else if (message.content.startsWith("v!verify")) {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
 				message.channel.send(":warning: Oops! It appears you're currently nicked, please **`!unnick`** to remove any ghost roles.").then(msg => {msg.delete({timeout:10000})});
+				message.delete({timeout:10000});
 				return;
 			}
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
@@ -95,7 +97,7 @@ bot.on('message', message => {
 					message.member.roles.remove('728748298168696852');
 				}
 			}
-			message.channel.send(":white_check_mark: Your rules are currently being updated. Any ghost roles will be removed.").then(msg => {msg.delete({timeout:10000})});
+			message.channel.send(":white_check_mark: Your roles are currently being updated. Any ghost roles will be removed.").then(msg => {msg.delete({timeout:10000})});
 		}
 		else if (command === 'role') {
 			if (!args[0]) {
@@ -211,6 +213,7 @@ bot.on('message', message => {
 					message.channel.send("\:warning: Couldn't find your in-game username in the database. Please try again later. You'll have to verify your account again by typing **'v!verify [in-game username]'**").then(msg => {msg.delete({timeout:10000})});
 					message.member.roles.add('728748298168696852');
 					message.member.roles.remove('726923236776083569');
+					message.delete({timeout:10000});
 					return;
 				}
 				message.channel.send("\:white_check_mark: Successfully unnicked.").then(msg => {msg.delete({timeout:4000})});
