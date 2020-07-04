@@ -37,11 +37,7 @@ bot.on('message', message => {
 	const command = args.shift().toLowerCase();
 	
 	if(message.channel.name == "verify") {
-		if (message.author.bot) {
-			message.delete({timeout:1000});
-		} else {
-			message.delete({timeout:1000}).then(message.channel.send("test"));
-		}
+		message.delete({timeout:1000});
 	}
 	else if(message.channel.name == "commands") {
 		if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'verify')) {
@@ -67,18 +63,33 @@ bot.on('message', message => {
 		else if (message.content.startsWith("v!verify")) {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
 				message.member.roles.remove('726923236776083569');
+				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
+					message.member.roles.remove('728748298168696852');
+				}
 			}
 			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+')) {
 				message.member.roles.remove('726923237614682133');
+				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
+					message.member.roles.remove('728748298168696852');
+				}
 			}
 			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp')) {
 				message.member.roles.remove('726923237812076637');
+				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
+					message.member.roles.remove('728748298168696852');
+				}
 			}
 			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+')) {
 				message.member.roles.remove('726923238331908154');
+				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
+					message.member.roles.remove('728748298168696852');
+				}
 			}
 			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip')) {
 				message.member.roles.remove('726923239049396457');
+				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
+					message.member.roles.remove('728748298168696852');
+				}
 			}
 		}
 		else if (command === 'role') {
