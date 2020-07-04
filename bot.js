@@ -37,7 +37,11 @@ bot.on('message', message => {
 	const command = args.shift().toLowerCase();
 	
 	if(message.channel.name == "verify") {
-		message.delete({timeout:1000}));
+		if (message.author.bot) {
+			message.delete({timeout:1000});
+		} else {
+			message.delete({timeout:1000}).then(message.channel.send("test"));
+		}
 	}
 	else if(message.channel.name == "commands") {
 		if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'verify')) {
