@@ -41,15 +41,6 @@ bot.on('message', message => {
 	
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
-
-	if (message.channel.name == "dev-channel") {
-		if (command === 'run') {
-			async msg => {await msg.guild.roles.create({data:{name:"(NICKED) " + message.member.displayName,color:'#111111'}}).catch(); await msg.member.roles.add(nickedrole.id).catch();}
-			//
-			message.channel.send("Command registered! (2)").then(msg => {msg.delete({timeout:4000})});
-			message.delete({timeout:4000});
-		}
-	}
 	
 	if(message.channel.name == "verify" || message.channel.name == "apply-for-rank") {
 		message.delete({timeout:1000});
@@ -251,8 +242,16 @@ bot.on('message', message => {
 				mention.roles.add('726926448044015656');
 			}
 			else {
-				message.channel.send("\:no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete({timeout:10000})});
+				message.channel.send(":no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete({timeout:10000})});
 			}
+			message.delete({timeout:1000});
+		}
+	}
+	else if(message.channel.name == "role-request") {
+		if (command === 'accept') {
+			const mention = message.mentions.members.first();
+			mention.roles.add('728990103678091335');
+			message.channel.send(":white_check_mark: Success!").then(msg => {msg.delete({timeout:1000})});
 			message.delete({timeout:1000});
 		}
 	}
