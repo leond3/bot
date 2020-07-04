@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
-const { prefix } = require("../config.json");
+const { prefix } = require("./config.json");
 
 const fs = require("fs");
-let username = require("../name.json");
+let username = require("./name.json");
 
 const bot = new Discord.Client();
 
@@ -52,6 +52,9 @@ bot.on('message', message => {
 			});
 			message.delete({timeout:10000});
 			message.channel.send("Command registered: " + message.content.slice(9)).then(msg => {msg.delete({timeout:10000})});
+		} else 	if (command === 'test') {
+			message.delete({timeout:10000});
+			message.channel.send("Data: " + username[message.author.id]).then(msg => {msg.delete({timeout:10000})});
 		}
 	}
 
