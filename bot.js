@@ -107,7 +107,7 @@ bot.on('message', message => {
 			}
 		}
 		if (command === 'nick') {
-			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
 				if (args[0]) {
 					message.member.setNickname(args[0]);
 					if (!message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
@@ -135,9 +135,7 @@ bot.on('message', message => {
 					message.channel.send(":no_entry: You've to specify a nickname!").then(msg => {msg.delete({timeout:4000})});
 				}
 				message.delete({timeout:200});
-				return;
-				}
-				
+				return;	
 			} else {
 				message.channel.send(":no_entry: This command is currently is a beta fase, only `@mvp++` may use this command right now.").then(msg => {msg.delete({timeout:10000})});
 			}
