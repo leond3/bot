@@ -50,7 +50,7 @@ bot.on('message', message => {
 			return;
 		}
 		if (command === 'help') {
-			 message.channel.send("**Commands help list:**\n- !help\n*Shows this help list.*\n- !coinflip (!cf)\n*Flips a coin, can be heads or tails.*\n- !role [role/list]\n*Self assign/remove pingable roles.*\n- !mypermissions (!myperms)\n*Shows all your additional (unlisted) permissions.*\n- v!verify [in-game username]\n*Updates your roles as well as removes any existing ghost roles.*\n- !nick [nickname] [rank]\n*Change your username and rank.*\n- !unnick\n*Removes your nicked status.*").then(msg => {msg.delete({timeout:30000})});
+			 message.channel.send("**Commands help list:**\n- !help\n*Shows this help list.*\n- !coinflip (!cf)\n*Flips a coin, can be heads or tails.*\n- !role [role/list]\n*Self assign/remove pingable roles.*\n- !mypermissions (!myperms)\n*Shows all your additional (unlisted) permissions.*\n- v!verify [in-game username]\n*Updates your roles as well as removes any existing ghost roles.*").then(msg => {msg.delete({timeout:30000})});
 		}
 		else if (command === 'coinflip' || command === 'cf') {
 			var cf = Array(2);
@@ -132,13 +132,16 @@ bot.on('message', message => {
 		}
 		else if (command === 'mypermissions' || command === 'myperms') {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'admin')) {
-				message.channel.send("**Your (discord) permissions list:**\n - !ban [mention] [reason]\n*Bans a user from the discord.*\n - !unban [mention]\n*Unbans a user from the discord.*\n - !kick [mention] [reason]\n*Removes a user from the discord.*\n - !mute [mention] [reason]\n*Disables an users ability to chat.*\n - !unmute [mention]\n*Enables an users ability to chat.*\n - !tv [mention]\n*Starts a trail vote (must be send in <#727255140293279827>).*\n - !promote [mention]\n*Promotes an user from trail status (must be send in <#727255140293279827>).*\n - !accept [mention]\n*Accepts a role request (must be send in <#728991321012043777>).*").then(msg => {msg.delete({timeout:30000})});
+				message.channel.send("**Your (discord) permissions list:**\n - !ban [mention] [reason]\n*Bans a user from the discord.*\n - !unban [mention]\n*Unbans a user from the discord.*\n - !kick [mention] [reason]\n*Removes a user from the discord.*\n - !mute [mention] [reason]\n*Disables an users ability to chat.*\n - !unmute [mention]\n*Enables an users ability to chat.*\n - !tv [mention]\n*Starts a trail vote (must be send in <#727255140293279827>).*\n - !promote [mention]\n*Promotes an user from trail status (must be send in <#727255140293279827>).*\n - !accept [mention]\n*Accepts a role request (must be send in <#728991321012043777>).*\n- !nick [nickname]\n*Change your username and rank.*\n- !unnick\n*Removes your nicked status.*").then(msg => {msg.delete({timeout:30000})});
 			}
 			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
 				message.channel.send("**Your (discord) permissions list:**\n - !mute [mention] [reason]\n*Disables an users ability to chat.*\n - !unmute [mention]\n*Enables an users ability to chat.*").then(msg => {msg.delete({timeout:30000})});
 			}
 			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'helper')) {
 				message.channel.send("**Your (discord) permissions list:**\n - !mute [mention] [reason]\n*Disables an users ability to chat.*\n - !unmute [mention]\n*Enables an users ability to chat.*").then(msg => {msg.delete({timeout:30000})});
+			}
+			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++')) {
+				message.channel.send("**Your (discord) permissions list:**\n- !nick [nickname] [rank]\n*Change your username and rank.*\n- !unnick\n*Removes your nicked status.*").then(msg => {msg.delete({timeout:30000})});
 			}
 			else {
 				message.channel.send(":no_entry: Your rank doesn't give any (additional/unlisted) discord permissions.").then(msg => {msg.delete({timeout:10000})});
@@ -217,7 +220,7 @@ bot.on('message', message => {
 				}
 			}
 			else {
-				message.channel.send(":no_entry: This command is currently is a beta fase, only `@mvp++` and `@admin` may use this command right now.").then(msg => {msg.delete({timeout:10000})});
+				message.channel.send(":no_entry: You do not have the right permissions to execute this command.").then(msg => {msg.delete({timeout:10000})});
 			}
 		} else if (command === 'unnick') {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked rank')) {
