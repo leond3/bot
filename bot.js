@@ -201,6 +201,7 @@ bot.on('message', message => {
 					return;
 				} else if (args[0]) {
 					message.member.setNickname(args[0]);
+					message.channel.send(":white_check_mark: Successfully nicked.").then(msg => {msg.delete({timeout:4000})});
 					if (!message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
 						message.member.roles.add('728755013127635037');
 					}
@@ -214,10 +215,10 @@ bot.on('message', message => {
 			}
 		} else if (command === 'unnick') {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked rank')) {
-				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'NICKED')) {
+				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
 					message.member.roles.remove('728755013127635037');
 				}
-				else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'NICKED rank')) {
+				else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked rank')) {
 					message.member.roles.remove('729456761324699749');
 				    	if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
 						message.member.roles.remove('728748298168696852');
