@@ -188,7 +188,7 @@ bot.on('message', message => {
 				message.delete({timeout:200});
 				return;	
 			} else {
-				message.channel.send(":no_entry: This command is currently is a beta fase, only `@mvp++` may use this command right now.").then(msg => {msg.delete({timeout:10000})});
+				message.channel.send(":no_entry: This command is currently is a beta fase, only `@mvp++` and `@admin` may use this command right now.").then(msg => {msg.delete({timeout:10000})});
 			}
 		} else if (command === 'unnick') {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
