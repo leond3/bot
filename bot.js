@@ -149,7 +149,10 @@ bot.on('message', message => {
 				if (args[0]) {
 					message.member.setNickname(args[0]);
 					if (!message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
-						message.member.roles.add('728755013127635037');
+						if (!args[1]) {
+							message.member.roles.add('728755013127635037');
+							message.channel.send(":white_check_mark: Successfully nicked.").then(msg => {msg.delete({timeout:4000})});
+						}
 					} else {
 						if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
 							message.member.roles.remove('728748298168696852');
@@ -164,7 +167,6 @@ bot.on('message', message => {
 						}
 						message.member.roles.add('726923236776083569');
 					}
-					message.channel.send(":white_check_mark: Successfully nicked.").then(msg => {msg.delete({timeout:4000})});
 					if (args[1]) {
 						if (args[1].toLowerCase() === 'none' || args[1].toLowerCase() === 'vip' || args[1].toLowerCase() === 'vip+' || args[1].toLowerCase() === 'mvp' || args[1].toLowerCase() === 'mvp+') {
 							if (args[1].toLowerCase() === 'none') {
@@ -178,22 +180,45 @@ bot.on('message', message => {
 							} else if (args[1].toLowerCase() === 'mvp+') {
 								message.member.roles.add('726923237614682133');
 							}
+							if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked role')) {
+							    message.member.roles.add('726923236776083569');
+								message.channel.send(":white_check_mark: Successfully (rank) nicked.").then(msg => {msg.delete({timeout:4000})});
+							}
 							message.member.roles.remove('726923236776083569');
 						}
 					}
 				}
 				else {
-					message.channel.send(":no_entry: You've to specify a nickname!").then(msg => {msg.delete({timeout:4000})});
+					message.channel.send(":no_entry: You didn't specify a nickname!").then(msg => {msg.delete({timeout:4000})});
 				}
 				message.delete({timeout:200});
-				return;	
-			} else {
+				return;
+			}
+			else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'admin') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
+				if (args[1]) {
+					message.channel.send(":no_entry: Only `mvp++` may nick as other ranks.").then(msg => {msg.delete({timeout:10000})});
+					message.delete({timeout:10000});
+					return;
+				} else if (args[0]) {
+					message.member.setNickname(args[0]);
+					if (!message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
+						message.member.roles.add('728755013127635037');
+					}
+				}
+				else {
+					message.channel.send(":no_entry: You didn't specify a nickname!").then(msg => {msg.delete({timeout:4000})});
+				}
+			}
+			else {
 				message.channel.send(":no_entry: This command is currently is a beta fase, only `@mvp++` and `@admin` may use this command right now.").then(msg => {msg.delete({timeout:10000})});
 			}
 		} else if (command === 'unnick') {
-			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
-				message.member.roles.remove('728755013127635037');
-				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip+') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp+')) {
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked rank')) {
+				if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'NICKED')) {
+					message.member.roles.remove('728755013127635037');
+				}
+				else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'NICKED rank')) {
+					message.member.roles.remove('729456761324699749');
 				    	if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'none')) {
 						message.member.roles.remove('728748298168696852');
 					} else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'vip')) {
@@ -207,12 +232,12 @@ bot.on('message', message => {
 					}
 					message.member.roles.add('726923236776083569');
 				}
+				
 				if (username[message.author.id]) {
 					message.member.setNickname(username[message.author.id]);
 				} else {
-					message.channel.send("\:warning: Couldn't find your in-game username in the database. Please try again later. You'll have to verify your account again by typing **'v!verify [in-game username]'**").then(msg => {msg.delete({timeout:10000})});
+					message.channel.send(":warning: Couldn't find your in-game username in the database. Please try again later. You'll have to verify your account again by typing **'v!verify [in-game username]'**").then(msg => {msg.delete({timeout:10000})});
 					message.member.roles.add('728748298168696852');
-					message.member.roles.remove('726923236776083569');
 					message.delete({timeout:10000});
 					return;
 				}
