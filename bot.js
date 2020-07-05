@@ -145,7 +145,7 @@ bot.on('message', message => {
 			}
 		}
 		else if (command === 'nick') {
-			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'mvp++') || message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked role')) {
 				if (args[0]) {
 					message.member.setNickname(args[0]);
 					if (!message.member.roles.cache.some(r => r.name.toLowerCase() === 'nicked')) {
