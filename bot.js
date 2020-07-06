@@ -319,21 +319,21 @@ bot.on('message', message => {
 				mention.roles.remove('727180920830034050');
 				mention.roles.add('726942583024254986');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted " + mention.id + "to helper rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted `" + mention.id + "` to **Helper** rank.");
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
 				message.channel.send("Congratulations <@" + mention + ">, you've been accepted as **Splasher**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured.*");
 				mention.roles.remove('727180786541002812');
 				mention.roles.add('726931348698300557');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted " + mention.id + "to splasher rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted `" + mention.id + "` to **Splasher** rank.");
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
 				message.channel.send("Congratulations <@" + mention + ">, you've been accepted as **Admin**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured.*");
 				mention.roles.remove('727180504402624532');
 				mention.roles.add('726926448044015656');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted " + mention.id + "to admin rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted `" + mention.id + "` to **Admin** rank.");
 			}
 			else {
 				message.channel.send(":no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete({timeout:10000})});
@@ -346,19 +346,19 @@ bot.on('message', message => {
 				message.channel.send("Sorry <@" + mention + ">, you unfortunately didn't make it as **Helper**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured. You may always apply again at any time.*");
 				mention.roles.remove('727180920830034050');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted " + mention.id + "from helper rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted `" + mention.id + "` from **Helper** rank.");
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
 				message.channel.send("Sorry <@" + mention + ">, you unfortunately didn't make it as **Splasher**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured. You may always apply again at any time.*");
 				mention.roles.remove('727180786541002812');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted " + mention.id + "from splasher rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted `" + mention.id + "` from **Splasher** rank.");
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
 				message.channel.send("Sorry <@" + mention + ">, you unfortunately didn't make it as **Admin**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured. You may always apply again at any time.*");
 				mention.roles.remove('727180504402624532');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted " + mention.id + "from admin rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted `" + mention.id + "` from **Admin** rank.");
 			}
 			else {
 				message.channel.send(":no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete({timeout:10000})});
