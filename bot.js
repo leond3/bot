@@ -331,7 +331,7 @@ bot.on('message', message => {
 	}
 	else if(message.channel.name == "role-request") {
 		if (command === 'accept') {
-			if (message.roles.cache.some(r => r.name.toLowerCase() === 'admin')) {
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'admin')) {
 				const mention = message.mentions.members.first();
 				mention.roles.add('728990103678091335');
 				message.channel.send(":white_check_mark: Success!").then(msg => {msg.delete({timeout:1000})});
