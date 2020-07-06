@@ -290,22 +290,22 @@ bot.on('message', message => {
 		}
 	}
 	else if(message.channel.name == "trail-vote") {
-		if (command === 'tv') {
+		if (command === 'trailvote' || command === 'tv') {
 			const mention = message.mentions.members.first();
 			if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail helper')) {
 				message.channel.send("What did you think of <@" + mention + "> as a **Trail Helper**; should this status be kept? Please vote by reacting to this message.\nHelper's need at least **5** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍').catch(); await msg.react('👎').catch();});
 				message.channel.updateOverwrite(mention.id, { VIEW_CHANNEL: false}).catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " started the trail (helper) voting process of " + mention + ".");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " started the trail (helper) voting process of " + mention.id + ".");
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
 				message.channel.send("What did you think of <@" + mention + "> as a **Trail Splasher**; should this status be kept? Please vote by reacting to this message.\nSplasher's need at least **4** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍').catch(); await msg.react('👎').catch();});
 				message.channel.updateOverwrite(mention.id, { VIEW_CHANNEL: false}).catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " started the trail (splasher) voting process of " + mention + ".");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " started the trail (splasher) voting process of " + mention.id + ".");
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
 				message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\nAdmin's need at least **6** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍').catch(); await msg.react('👎').catch();});
 				message.channel.updateOverwrite(mention.id, { VIEW_CHANNEL: false}).catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " started the trail (admin) voting process of " + mention + ".");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " started the trail (admin) voting process of " + mention.id + ".");
 			}
 			else {
 				message.channel.send("\:no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete({timeout:10000})});
@@ -319,21 +319,21 @@ bot.on('message', message => {
 				mention.roles.remove('727180920830034050');
 				mention.roles.add('726942583024254986');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted " + mention.tag + "to helper rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted " + mention.id + "to helper rank.");
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
 				message.channel.send("Congratulations <@" + mention + ">, you've been accepted as **Splasher**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured.*");
 				mention.roles.remove('727180786541002812');
 				mention.roles.add('726931348698300557');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted " + mention.tag + "to splasher rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted " + mention.id + "to splasher rank.");
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
 				message.channel.send("Congratulations <@" + mention + ">, you've been accepted as **Admin**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured.*");
 				mention.roles.remove('727180504402624532');
 				mention.roles.add('726926448044015656');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted " + mention.tag + "to admin rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " promoted " + mention.id + "to admin rank.");
 			}
 			else {
 				message.channel.send(":no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete({timeout:10000})});
@@ -343,22 +343,22 @@ bot.on('message', message => {
 		else if (command === 'demote') {
 			const mention = message.mentions.members.first();
 			if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail helper')) {
-				message.channel.send("Congratulations <@" + mention + ">, you unfortunately didn't make it as **Helper**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured. You may always apply again at any time.*");
+				message.channel.send("Sorry <@" + mention + ">, you unfortunately didn't make it as **Helper**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured. You may always apply again at any time.*");
 				mention.roles.remove('727180920830034050');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted " + mention.tag + "from helper rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted " + mention.id + "from helper rank.");
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail splasher')) {
-				message.channel.send("Congratulations <@" + mention + ">, you unfortunately didn't make it as **Splasher**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured. You may always apply again at any time.*");
+				message.channel.send("Sorry <@" + mention + ">, you unfortunately didn't make it as **Splasher**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured. You may always apply again at any time.*");
 				mention.roles.remove('727180786541002812');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted " + mention.tag + "from splasher rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted " + mention.id + "from splasher rank.");
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
-				message.channel.send("Congratulations <@" + mention + ">, you unfortunately didn't make it as **Admin**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured. You may always apply again at any time.*");
+				message.channel.send("Sorry <@" + mention + ">, you unfortunately didn't make it as **Admin**!\n*Your roles have automatically been updated. Please contact an administrator if an error occured. You may always apply again at any time.*");
 				mention.roles.remove('727180504402624532');
 				message.channel.permissionOverwrites.get(mention.id).delete().catch();
-				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted " + mention.tag + "from admin rank.");
+				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " demoted " + mention.id + "from admin rank.");
 			}
 			else {
 				message.channel.send(":no_entry: This user doesn't have any **Trail Status** active.").then(msg => {msg.delete({timeout:10000})});
@@ -370,7 +370,7 @@ bot.on('message', message => {
 		if (command === 'accept') {
 			if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'admin')) {
 				const mention = message.mentions.members.first();
-				mention.roles.add('728990103678091335');
+				mention.roles.add('728990103678091335').catch();
 				message.channel.send(":white_check_mark: Success!").then(msg => {msg.delete({timeout:1000})});
 			}
 			else {
