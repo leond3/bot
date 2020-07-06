@@ -303,7 +303,7 @@ bot.on('message', message => {
 				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " started the trail (splasher) voting process of " + mention + ".");
 			}
 			else if (mention.roles.cache.some(r => r.name.toLowerCase() === 'trail admin')) {
-				message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\Admin's need at least **6** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍').catch(); await msg.react('👎').catch();});
+				message.channel.send("What did you think of <@" + mention + "> as a **Trail Admin**; should this status be kept? Please vote by reacting to this message.\nAdmin's need at least **6** upvotes (+1 from bot).\n*The voting will end soon, voting is not required. Exceptions might be made.*").then(async msg => {await msg.react('👍').catch(); await msg.react('👎').catch();});
 				message.channel.overwritePermissions([{id: mention,deny: ['VIEW_CHANNEL'],},]);
 				message.guild.channels.cache.find(c => c.name === 'dev-channel').send(message.member.user.tag + " started the trail (admin) voting process of " + mention + ".");
 			}
