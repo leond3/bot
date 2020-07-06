@@ -37,6 +37,12 @@ bot.on('message', message => {
 	const command = args.shift().toLowerCase();
 	
 	if(message.channel.name == "verify" || message.channel.name == "apply-for-rank") {
+		if (message.channel.name == "verify") {
+			if (message.content.startsWith("v!verify") && message.member.roles.cache.some(r => r.name.toLowerCase() === 'guild member (unverified)')) {
+				message.member.roles.remove('729648260481810513');
+				message.member.roles.add('726931313780719669');
+			}
+		}
 		message.delete({timeout:1000});
 		return;
 	}
