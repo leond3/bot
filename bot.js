@@ -43,7 +43,8 @@ bot.on('message', message => {
 		}
 		message.delete({timeout:10000});
 		return;
-	} else if (message.channel.name == "apply-for-rank") {
+	}
+	else if (message.channel.name == "apply-for-rank") {
 		message.delete({timeout:1000});
 		return;
 	}
