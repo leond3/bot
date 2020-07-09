@@ -281,7 +281,7 @@ bot.on('message', message => {
 		if (message.content.startsWith(prefix) && !message.author.bot) {
 			message.delete({timeout:10000});
 		}
-		else if (message.roles.cache.some(r => r.name.toLowerCase() === 'music')) {
+		else if (message.member.roles.cache.some(r => r.name.toLowerCase() === 'music')) {
 			message.delete({timeout:30000});
 		}
 		else if (!message.content.startsWith(prefix) && !message.author.bot) {
